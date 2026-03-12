@@ -1,9 +1,10 @@
-"use client";
-
-import { useState } from "react";
-import { Github, Linkedin, FileText, Copy, Check } from "lucide-react";
+import { Github, Linkedin, Mail, Download } from "lucide-react";
 import AboutMe from "@/components/AboutMe";
 import Experience from "@/components/Experience";
+import HeroBackground from "@/components/HeroBackground";
+import Skills from "@/components/Skills";
+import Navbar from "@/components/Navbar";
+import Projects from "@/components/Projects";
 
 export const EMAIL = "kewvydev@outlook.com";
 
@@ -50,14 +51,16 @@ export const projects = [
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Stripe", "NodeMailer"],
     demo: "https://cleanmindsetcs.com",
     code: "#",
+    image: "",
   },
   {
     title: "Tastify",
     description:
       "Tastify description...",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Clerk Auth", "Cloudinary"],
-    demo: "#",
-    code: "#",
+    demo: "https://tastify-rosy.vercel.app/",
+    code: "https://github.com/kewvydev/Tastify",
+    image: "",
   },
   {
     title: "PcBuilder+",
@@ -65,7 +68,8 @@ export const projects = [
       "PcBuilder+ description...",
     tags: ["Java 17", "Spring Boot 3", "Spring Data JPA", "Maven", "PostgreSQL"],
     demo: "#",
-    code: "#",
+    code: "https://github.com/kewvydev/pc-builder-backend",
+    image: "",
   },
 ];
 
@@ -92,81 +96,116 @@ export const skillCategories = [
   },
 ];
 
-const ICON_LINK =
-  "inline-flex items-center justify-center w-12 h-12 border-2 border-black bg-white shadow-[3px_3px_0_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black";
+const MARQUEE_ITEMS = [
+  "WEB3 READY",
+  "ACCESSIBLE",
+  "FAST",
+  "SECURE",
+  "OPEN FOR WORK",
+  "FULL STACK DEVELOPMENT",
+];
+
+const BTN_BASE =
+  "inline-flex items-center gap-2 px-5 py-3 text-xs font-bold uppercase tracking-widest border-2 border-foreground shadow-[4px_4px_0_var(--foreground)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground";
 
 export default function Home() {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(EMAIL);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      /* clipboard may be unavailable */
-    }
-  };
-
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-yellow-300 selection:text-black">
-      <div className="mx-auto max-w-4xl px-6 py-16 md:py-24 space-y-24">
-        {/* HERO */}
-        <section>
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight leading-[1.05] mb-6">
-            Hi! Im Kevin
+      <Navbar />
+      {/* HERO */}
+      <section className="relative min-h-screen flex flex-col overflow-hidden">
+        <HeroBackground />
+
+        <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 pt-28 pb-24 text-center">
+          {/* Status badge */}
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-background/80 px-4 py-1.5 text-xs font-bold uppercase tracking-widest backdrop-blur-sm">
+            <span className="inline-block h-2.5 w-2.5 rounded-sm bg-green-500" />
+            System Status: Online
+          </div>
+
+          {/* Title */}
+          <h1 className="font-heading font-black leading-[0.95] tracking-tighter">
+            <span className="block text-6xl sm:text-8xl md:text-9xl text-foreground">
+              FULL STACK
+            </span>
+            <span
+              className="block text-6xl sm:text-8xl md:text-9xl"
+              style={{
+                WebkitTextStroke: "2.5px var(--foreground)",
+                color: "transparent",
+              }}
+            >
+              DEVELOPER
+            </span>
           </h1>
 
-          <p className="text-sm md:text-base leading-relaxed max-w-2xl mb-10 opacity-80">
-            A Software Engineering student passionate about technology and
-            software development. I excel at communicating solutions clearly and
-            effectively. Committed to continuous improvement, I seek to merge my
-            solid technical background with the dedication to provide exceptional
-            favor. My goal is to contribute to dynamic teams, leveraging my
-            technical competencies and communication skills.
-          </p>
-
-          <div className="flex items-center gap-3 mb-6">
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub profile"
-              className={ICON_LINK}
-            >
-              <Github size={22} strokeWidth={2.5} />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn profile"
-              className={ICON_LINK}
-            >
-              <Linkedin size={22} strokeWidth={2.5} />
-            </a>
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Download resume"
-              className={ICON_LINK}
-            >
-              <FileText size={22} strokeWidth={2.5} />
-            </a>
+          {/* Yellow description card */}
+          <div className="mt-8 max-w-md border-2 border-foreground bg-yellow-300 px-6 py-4 shadow-[4px_4px_0_var(--foreground)]">
+            <p className="text-sm leading-relaxed text-foreground">
+              I build digital products that refuse to be boring.
+            </p>
+            <p className="mt-2 text-sm font-bold text-foreground">
+              React &bull; Python &bull; Java &bull; Node
+            </p>
           </div>
 
-          <div className="inline-flex items-center border-2 border-black shadow-[3px_3px_0_black] bg-white">
-            <span className="px-4 py-2.5 text-sm select-all">{EMAIL}</span>
-            <button
-              onClick={handleCopy}
-              aria-label={copied ? "Email copied" : "Copy email to clipboard"}
-              className="px-3 py-2.5 border-l-2 border-black hover:bg-yellow-300 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+          {/* Action buttons */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="https://linkedin.com/in/kewvy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${BTN_BASE} bg-foreground text-background hover:bg-yellow-300 hover:text-foreground`}
             >
-              {copied ? <Check size={16} /> : <Copy size={16} />}
-            </button>
+              <Linkedin size={16} strokeWidth={2.5} />
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/kewvydev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${BTN_BASE} bg-foreground text-background hover:bg-yellow-300 hover:text-foreground`}
+            >
+              <Github size={16} strokeWidth={2.5} />
+              GitHub
+            </a>
+            <a
+              href={`mailto:${EMAIL}`}
+              className={`${BTN_BASE} bg-foreground text-background hover:bg-yellow-300 hover:text-foreground`}
+            >
+              <Mail size={16} strokeWidth={2.5} />
+              Email
+            </a>
+            <a
+              href="/CV_Kevin_Gonzalez.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${BTN_BASE} bg-background text-foreground hover:bg-yellow-300`}
+            >
+              <Download size={16} strokeWidth={2.5} />
+              Download CV
+            </a>
           </div>
-        </section>
+        </div>
+
+        {/* Scrolling marquee */}
+        <div className="relative z-10 overflow-hidden border-y-2 border-foreground bg-yellow-300">
+          <div className="flex animate-marquee whitespace-nowrap py-3">
+            {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map(
+              (item, i) => (
+                <span
+                  key={i}
+                  className="mx-3 text-xs font-bold uppercase tracking-widest text-foreground"
+                >
+                  /// {item}
+                </span>
+              )
+            )}
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-4xl px-6 py-16 md:py-24 space-y-24">
 
         {/* ABOUT ME */}
         <AboutMe />
@@ -175,81 +214,12 @@ export default function Home() {
         <Experience />
 
         {/* TECHNICAL SKILLS */}
-        <section>
-          <h2 className="text-3xl md:text-4xl font-black mb-10">
-            Technical Skills
-          </h2>
+        <Skills categories={skillCategories} />
 
-          <div className="space-y-6">
-            {skillCategories.map((cat) => (
-              <div key={cat.name}>
-                <h3 className="text-sm font-bold uppercase tracking-wide mb-3 opacity-60">
-                  {cat.name}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {cat.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-3 py-1.5 text-sm font-bold border-2 border-black bg-white shadow-[3px_3px_0_black] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-yellow-300 transition-all cursor-default"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* PROJECTS */}
-        <section>
-          <h2 className="text-3xl md:text-4xl font-black mb-10">Projects</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projects.map((project, i) => (
-              <article
-                key={i}
-                className="border-2 border-black p-5 bg-white shadow-[5px_5px_0_black] hover:shadow-none hover:translate-x-[5px] hover:translate-y-[5px] transition-all flex flex-col"
-              >
-                <h3 className="text-lg font-bold mb-2">{project.title}</h3>
-                <p className="text-sm leading-relaxed opacity-75 mb-4 flex-1">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-0.5 text-xs font-bold border border-black bg-yellow-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex gap-3">
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-1.5 text-sm font-bold border-2 border-black bg-black text-white hover:bg-yellow-300 hover:text-black transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                  >
-                    Demo
-                  </a>
-                  <a
-                    href={project.code}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-1.5 text-sm font-bold border-2 border-black bg-white hover:bg-yellow-300 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                  >
-                    Code
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
       </div>
+
+      {/* PROJECTS — full width */}
+      <Projects />
     </main>
   );
 }

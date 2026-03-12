@@ -1,43 +1,80 @@
 import { experiences } from "@/app/page";
 
-export default function Experience() {
-    return (
-        <section>
-          <h2 className="text-3xl md:text-4xl font-black mb-10">Experience</h2>
+const DOT_COLORS = ["bg-yellow-300", "bg-blue-500", "bg-pink-400", "bg-green-400"];
 
-          <div className="space-y-0">
-            {experiences.map((exp, i) => (
-              <div key={i} className="flex gap-5">
-                {/* timeline track */}
-                <div className="flex flex-col items-center pt-1">
-                  <div className="w-3.5 h-3.5 border-2 border-black bg-yellow-300 shrink-0" />
-                  {i < experiences.length - 1 && (
-                    <div className="w-[2px] bg-black flex-1" />
-                  )}
+export default function Experience() {
+  return (
+    <section id="experience">
+      {/* Heading */}
+      <h2 className="text-4xl md:text-5xl font-black font-heading mb-12 leading-tight">
+        EXPERIENCE
+        <span
+          style={{
+            WebkitTextStroke: "2px var(--foreground)",
+            color: "transparent",
+          }}
+        >
+          _LOG
+        </span>
+      </h2>
+
+      <div className="relative">
+        {/* Vertical timeline line */}
+        <div className="absolute left-[7px] top-0 bottom-0 w-[2px] bg-foreground/20 hidden md:block" />
+
+        <div className="space-y-6">
+          {experiences.map((exp, i) => (
+            <div key={i} className="flex gap-5 md:gap-8">
+              {/* Timeline dot */}
+              <div className="hidden md:flex flex-col items-center pt-5 shrink-0">
+                <div
+                  className={`relative z-10 w-4 h-4 border-2 border-foreground ${DOT_COLORS[i % DOT_COLORS.length]}`}
+                />
+              </div>
+
+              {/* Experience card */}
+              <div className="flex-1 border-2 border-foreground bg-background shadow-[5px_5px_0_var(--foreground)] hover:shadow-none hover:translate-x-[5px] hover:translate-y-[5px] transition-all">
+                {/* Card header */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-5 pb-0">
+                  <h3 className="text-base md:text-lg font-black font-heading uppercase leading-snug">
+                    {exp.role}
+                  </h3>
+                  <span className="shrink-0 self-start border-2 border-foreground bg-foreground text-background px-3 py-1 text-[10px] font-bold uppercase tracking-widest font-mono">
+                    {exp.period}
+                  </span>
                 </div>
 
-                {/* content */}
-                <div className="pb-10">
-                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
-                    <h3 className="text-lg font-bold leading-snug">
-                      {exp.role}
-                    </h3>
-                    <span className="text-xs font-semibold tracking-wide uppercase opacity-50">
-                      {exp.period}
+                {/* Dashed separator */}
+                <div className="mx-5 my-3 border-t-2 border-dashed border-foreground/30" />
+
+                {/* Card body */}
+                <div className="px-5 pb-5">
+                  <p className="text-sm font-bold mb-3">
+                    <span className="text-muted-foreground">@</span>{" "}
+                    <span className="bg-yellow-300 px-1 border border-foreground">
+                      {exp.company}
                     </span>
-                  </div>
-                  <p className="text-sm font-semibold mb-2 opacity-60">
-                    {exp.company}
                   </p>
-                  <ul className="list-disc pl-5 space-y-1 text-sm leading-relaxed opacity-75">
+
+                  <div className="space-y-1.5">
                     {exp.bullets.map((b, j) => (
-                      <li key={j}>{b}</li>
+                      <p
+                        key={j}
+                        className="text-sm leading-relaxed text-muted-foreground"
+                      >
+                        <span className="text-foreground font-bold mr-1.5">
+                          &gt;
+                        </span>
+                        {b}
+                      </p>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-    )
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
