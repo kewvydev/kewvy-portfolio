@@ -1,5 +1,6 @@
 import { Github, Linkedin, Mail, Download } from "lucide-react";
 import AboutMe from "@/components/AboutMe";
+import Contact from "@/components/Contact";
 import Experience from "@/components/Experience";
 import HeroBackground from "@/components/HeroBackground";
 import Skills from "@/components/Skills";
@@ -51,7 +52,7 @@ export const projects = [
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Stripe", "NodeMailer"],
     demo: "https://cleanmindsetcs.com",
     code: "#",
-    image: "",
+    image: "/projects/cleanmindset.png",
   },
   {
     title: "Tastify",
@@ -60,7 +61,7 @@ export const projects = [
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Clerk Auth", "Cloudinary"],
     demo: "https://tastify-rosy.vercel.app/",
     code: "https://github.com/kewvydev/Tastify",
-    image: "",
+     image: "/projects/tastify.png",
   },
   {
     title: "PcBuilder+",
@@ -69,7 +70,7 @@ export const projects = [
     tags: ["Java 17", "Spring Boot 3", "Spring Data JPA", "Maven", "PostgreSQL"],
     demo: "#",
     code: "https://github.com/kewvydev/pc-builder-backend",
-    image: "",
+    image: "/projects/pcbuilder.jpeg",
   },
 ];
 
@@ -97,105 +98,101 @@ export const skillCategories = [
 ];
 
 const MARQUEE_ITEMS = [
-  "WEB3 READY",
-  "ACCESSIBLE",
-  "FAST",
-  "SECURE",
+  "BUILDING DIGITAL SOLUTIONS",
+  "FULL STACK DEV",
   "OPEN FOR WORK",
-  "FULL STACK DEVELOPMENT",
+  "AGILE METHODOLOGIES",
+  "CLEAN ARCHITECTURE",
+  "CLOUD SERVICES",
+  "TEAM COLLABORATION",
+  "USER EXPERIENCE DESIGN",
+  // add more jeje
 ];
 
 const BTN_BASE =
-  "inline-flex items-center gap-2 px-5 py-3 text-xs font-bold uppercase tracking-widest border-2 border-foreground shadow-[4px_4px_0_var(--foreground)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground";
+  "inline-flex items-center justify-center gap-2 px-5 py-3 text-xs font-black uppercase tracking-widest border-2 border-foreground shadow-[4px_4px_0_var(--foreground)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground selection:bg-yellow-300 selection:text-black">
+    <main className="relative min-h-screen bg-background text-foreground selection:bg-yellow-300 selection:text-black">
+      <HeroBackground />
       <Navbar />
       {/* HERO */}
-      <section className="relative min-h-screen flex flex-col overflow-hidden">
-        <HeroBackground />
+      <section className="relative z-10 min-h-screen flex flex-col overflow-hidden">
 
-        <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 pt-28 pb-24 text-center">
-          {/* Status badge */}
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-background/80 px-4 py-1.5 text-xs font-bold uppercase tracking-widest backdrop-blur-sm">
-            <span className="inline-block h-2.5 w-2.5 rounded-sm bg-green-500" />
-            System Status: Online
+        {/* Main content — centered */}
+        <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 text-center pt-24 pb-16">
+          {/* Status pill */}
+          <div className="mb-8 inline-flex items-center gap-2 border-2 border-foreground bg-white px-4 py-1.5 text-[11px] font-black uppercase tracking-widest shadow-[3px_3px_0_var(--foreground)]">
+            <span className="h-2 w-2 bg-green-500 border border-foreground" />
+            SOFTWARE ENGINEERING STUDENT
           </div>
 
-          {/* Title */}
-          <h1 className="font-heading font-black leading-[0.95] tracking-tighter">
-            <span className="block text-6xl sm:text-8xl md:text-9xl text-foreground">
-              FULL STACK
+          {/* Headline */}
+          <h1 className="font-heading font-black leading-[0.9] tracking-[-0.03em]">
+            <span className="block text-[clamp(3.5rem,13vw,9.5rem)] text-foreground">
+              KEVIN
             </span>
             <span
-              className="block text-6xl sm:text-8xl md:text-9xl"
-              style={{
-                WebkitTextStroke: "2.5px var(--foreground)",
-                color: "transparent",
-              }}
-            >
-              DEVELOPER
+              className="block text-[clamp(3.5rem,13vw,9.5rem)] text-stroke-heading text-white">
+              GONZALEZ
             </span>
           </h1>
 
-          {/* Yellow description card */}
-          <div className="mt-8 max-w-md border-2 border-foreground bg-yellow-300 px-6 py-4 shadow-[4px_4px_0_var(--foreground)]">
-            <p className="text-sm leading-relaxed text-foreground">
-              I build digital products that refuse to be boring.
-            </p>
-            <p className="mt-2 text-sm font-bold text-foreground">
-              React &bull; Python &bull; Java &bull; Node
+          {/* One-liner */}
+          <div className={`${BTN_BASE} mt-6 max-w-lg bg-yellow-300 text-foreground cursor-default`}>
+            <p className="text-sm md:text-base leading-relaxed font-medium normal-case tracking-normal">
+              Full Stack Developer and Software Engineering Student from Baja California, Mexico. Passionate about emerging technologies and software development.
             </p>
           </div>
 
-          {/* Action buttons */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="https://linkedin.com/in/kewvy"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${BTN_BASE} bg-foreground text-background hover:bg-yellow-300 hover:text-foreground`}
-            >
-              <Linkedin size={16} strokeWidth={2.5} />
-              LinkedIn
-            </a>
+          {/* CTA row */}
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a
               href="https://github.com/kewvydev"
               target="_blank"
               rel="noopener noreferrer"
-              className={`${BTN_BASE} bg-foreground text-background hover:bg-yellow-300 hover:text-foreground`}
+              className={`${BTN_BASE} bg-white text-foreground hover:bg-yellow-300 hover:text-foreground`}
             >
-              <Github size={16} strokeWidth={2.5} />
+              <Github size={15} strokeWidth={2.5} />
               GitHub
             </a>
             <a
-              href={`mailto:${EMAIL}`}
-              className={`${BTN_BASE} bg-foreground text-background hover:bg-yellow-300 hover:text-foreground`}
+              href="https://www.linkedin.com/in/kevin-gonzalez-torres/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${BTN_BASE} bg-white text-foreground hover:bg-yellow-300 hover:text-foreground`}
             >
-              <Mail size={16} strokeWidth={2.5} />
+              <Linkedin size={15} strokeWidth={2.5} />
+              LinkedIn
+            </a>
+            <a
+              href={`mailto:${EMAIL}`}
+              className={`${BTN_BASE} bg-white text-foreground hover:bg-yellow-300`}
+            >
+              <Mail size={15} strokeWidth={2.5} />
               Email
             </a>
             <a
-              href="/CV_Kevin_Gonzalez.pdf"
+              href="/Resume_Kevin_Gonzalez.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className={`${BTN_BASE} bg-background text-foreground hover:bg-yellow-300`}
+              className={`${BTN_BASE} bg-white text-foreground hover:bg-yellow-300`}
             >
-              <Download size={16} strokeWidth={2.5} />
-              Download CV
+              <Download size={15} strokeWidth={2.5} />
+              CV
             </a>
           </div>
         </div>
 
-        {/* Scrolling marquee */}
-        <div className="relative z-10 overflow-hidden border-y-2 border-foreground bg-yellow-300">
+        {/* Marquee */}
+        <div className="relative z-10 overflow-hidden border-3 border-foreground bg-yellow-300">
           <div className="flex animate-marquee whitespace-nowrap py-3">
             {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map(
               (item, i) => (
                 <span
                   key={i}
-                  className="mx-3 text-xs font-bold uppercase tracking-widest text-foreground"
+                  className="mx-3 text-xs font-black uppercase tracking-widest text-foreground"
                 >
                   /// {item}
                 </span>
@@ -205,10 +202,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-4xl px-6 py-16 md:py-24 space-y-24">
-
-        {/* ABOUT ME */}
-        <AboutMe />
+      <div className="relative z-10 mx-auto max-w-4xl px-6 py-16 md:py-24 space-y-24">
 
         {/* EXPERIENCE */}
         <Experience />
@@ -219,7 +213,27 @@ export default function Home() {
       </div>
 
       {/* PROJECTS — full width */}
-      <Projects />
+      <div className="relative z-10">
+        <Projects />
+      </div>
+
+      {/* ABOUT ME */}
+      <div className="relative z-10 mx-auto max-w-4xl px-6 py-16 md:py-24 space-y-24">
+        <AboutMe />
+      </div>
+
+      {/* CONTACT */}
+      <div className="relative z-10">
+        <Contact />
+      </div>
+
+      {/* FOOTER */}
+      <footer className="relative z-10 border-t-3 border-foreground bg-yellow-300 p-8 text-center">
+        <p className="text-xs font-black uppercase tracking-widest text-foreground">
+          &copy; {new Date().getFullYear()} Made with ❤️ by Kevin Gonzalez. <br />
+          This is an early version of my portfolio. Please check back soon for updates!
+        </p>
+      </footer>
     </main>
   );
 }

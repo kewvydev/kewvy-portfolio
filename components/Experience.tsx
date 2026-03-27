@@ -6,13 +6,9 @@ export default function Experience() {
   return (
     <section id="experience">
       {/* Heading */}
-      <h2 className="text-4xl md:text-5xl font-black font-heading mb-12 leading-tight">
+      <h2 className="text-6xl md:text-6xl font-black font-heading mb-12 leading-tight tracking-widest text-center">
         EXPERIENCE
-        <span
-          style={{
-            WebkitTextStroke: "2px var(--foreground)",
-            color: "transparent",
-          }}
+        <span className="text-red-500"
         >
           _LOG
         </span>
@@ -33,7 +29,7 @@ export default function Experience() {
               </div>
 
               {/* Experience card */}
-              <div className="flex-1 border-2 border-foreground bg-background shadow-[5px_5px_0_var(--foreground)] hover:shadow-none hover:translate-x-[5px] hover:translate-y-[5px] transition-all">
+              <div className="flex-1 border-2 border-foreground bg-white shadow-[5px_5px_0_var(--foreground)] hover:shadow-none hover:translate-x-[5px] hover:translate-y-[5px] transition-all">
                 {/* Card header */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-5 pb-0">
                   <h3 className="text-base md:text-lg font-black font-heading uppercase leading-snug">

@@ -1,10 +1,11 @@
-import { MapPin, Zap } from "lucide-react";
+import Image from "next/image";
+import { GraduationCap } from "lucide-react";
 
 const TERMINAL_LINES = [
   { prompt: "~/kevin", cmd: "cat skills.txt" },
   { output: "Full Stack & Web Development" },
-  { output: "Clean Architecture & REST APIs" },
-  { output: "Building products that ship" },
+  { output: "Clean Architecture & Quality Code" },
+  { output: "Building applications that solve problems" },
   { prompt: "~/kevin", cmd: "echo $STATUS" },
   { output: "Ready to collaborate ✓" },
 ];
@@ -14,14 +15,15 @@ export default function AboutMe() {
     <section id="about">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Main bio card — spans 2 cols */}
-        <div className="md:col-span-2 border-2 border-foreground bg-background p-6 md:p-8 shadow-[5px_5px_0_var(--foreground)]">
+        <div className="md:col-span-2 border-2 border-foreground bg-white p-6 md:p-8 shadow-[5px_5px_0_var(--foreground)]">
           <h2 className="text-4xl md:text-5xl font-black font-heading mb-5 leading-tight">
             ABOUT
             <br />
             <span
               style={{
                 WebkitTextStroke: "2px var(--foreground)",
-                color: "transparent",
+                color: "background",
+                paintOrder: "stroke fill",
               }}
             >
               ME
@@ -42,28 +44,27 @@ export default function AboutMe() {
         {/* Right column — stacked badges */}
         <div className="flex flex-col gap-4">
           <div className="flex-1 border-2 border-foreground bg-yellow-300 p-5 shadow-[5px_5px_0_var(--foreground)] flex flex-col justify-center">
-            <MapPin size={20} strokeWidth={2.5} className="mb-2" />
+            <GraduationCap size={20} strokeWidth={2.5} className="mb-2" />
             <span className="text-[10px] font-bold uppercase tracking-widest text-foreground/60">
-              Location
+              Education
             </span>
-            <span className="text-lg font-black font-heading leading-tight">
-              Ensenada, MX
+            <span className="text-md font-heading leading-tight">
+              B.S. Software Engineering and Emerging Technologies
             </span>
           </div>
 
-          <div className="flex-1 border-2 border-foreground bg-green-400 p-5 shadow-[5px_5px_0_var(--foreground)] flex flex-col justify-center">
-            <Zap size={20} strokeWidth={2.5} className="mb-2" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-foreground/60">
-              Status
-            </span>
-            <span className="text-lg font-black font-heading leading-tight">
-              Open for Work
-            </span>
+          <div className="aspect-square border-2 border-foreground bg-white shadow-[5px_5px_0_var(--foreground)] overflow-hidden relative">
+            <Image
+              src="/me.jpeg"
+              alt="Kevin"
+              fill
+              className="object-cover"
+            />
           </div>
         </div>
 
         {/* Quote card */}
-        <div className="border-2 border-foreground bg-foreground text-background p-6 shadow-[5px_5px_0_var(--foreground)] flex items-center">
+        <div className="border-3 border-foreground bg-foreground text-background p-6 shadow-[5px_5px_0_var(--foreground)] flex items-center">
           <p className="text-lg md:text-xl font-black font-heading leading-snug">
             &ldquo;I don&apos;t just write code — I build experiences that
             refuse to be boring.&rdquo;
@@ -71,7 +72,7 @@ export default function AboutMe() {
         </div>
 
         {/* Terminal card — spans 2 cols */}
-        <div className="md:col-span-2 border-2 border-foreground bg-foreground shadow-[5px_5px_0_var(--foreground)] overflow-hidden">
+        <div className="md:col-span-2 border-3 border-foreground bg-foreground shadow-[5px_5px_0_var(--foreground)] overflow-hidden">
           {/* Title bar */}
           <div className="flex items-center gap-2 px-4 py-2.5 border-b-2 border-foreground/20">
             <span className="h-3 w-3 rounded-full bg-red-500" />

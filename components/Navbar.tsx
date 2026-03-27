@@ -49,15 +49,15 @@ export default function Navbar() {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="border-2 border-foreground bg-yellow-300 px-5 py-2.5 shadow-[4px_4px_0_var(--foreground)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-150"
+            className="border-2 border-foreground bg-white px-3 py-1 shadow-[4px_4px_0_var(--foreground)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-150"
           >
-            <span className="text-sm font-black uppercase tracking-widest text-foreground">
-              kewvydev
+            <span className="text-lg font-heading font-extrabold uppercase tracking-widest text-foreground">
+              kewvy.dev
             </span>
           </a>
 
           {/* Desktop Navigation - Rectángulo derecho */}
-          <div className="hidden md:flex items-center border-2 border-foreground bg-background shadow-[4px_4px_0_var(--foreground)]">
+          <div className="hidden md:flex items-center border-2 border-foreground bg-white shadow-[4px_4px_0_var(--foreground)]">
             {navItems.map((item, index) => (
               <a
                 key={item.label}
@@ -77,7 +77,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden border-2 border-foreground bg-yellow-300 p-2.5 shadow-[4px_4px_0_var(--foreground)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-150"
+            className="md:hidden border-3 border-foreground bg-yellow-300 p-2.5 shadow-[4px_4px_0_var(--foreground)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-150"
             aria-label="Toggle menu"
           >
             {isOpen ? (

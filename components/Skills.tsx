@@ -15,8 +15,8 @@ export default function Skills({ categories }: SkillsProps) {
 
   return (
     <section id="skills">
-      <div className="border-2 border-foreground bg-background p-2 shadow-[6px_6px_0_var(--foreground)]">
-        <div className="border-2 border-foreground p-4 md:p-6">
+      <div className="border-4 border-foreground bg-white p-2 shadow-[6px_6px_0_var(--foreground)]">
+        <div className="border-3 border-foreground p-4 md:p-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="lg:col-span-2 border-2 border-foreground bg-foreground text-background p-5 md:p-6 shadow-[4px_4px_0_var(--foreground)]">
               <p className="text-[10px] uppercase tracking-[0.22em] font-bold text-background/65 mb-2">
@@ -25,20 +25,19 @@ export default function Skills({ categories }: SkillsProps) {
               <h2 className="text-4xl md:text-5xl font-black font-heading leading-[0.95]">
                 SKILLS
                 <span
-                  className="ml-2"
-                  style={{ color: "var(--chart-2)" }}
+                  className="ml-2 text-yellow-300"
                 >
                   CORE
                 </span>
               </h2>
               <p className="mt-3 text-sm md:text-base text-background/80 max-w-xl leading-relaxed">
-                Herramientas y tecnologias con las que construyo productos
-                completos, desde la interfaz hasta infraestructura y despliegue.
+                Tools and technologies I use to build complete products,
+                from the interface to infrastructure and deployment.
               </p>
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-1 gap-4">
-              <div className="border-2 border-foreground bg-yellow-300 p-4 shadow-[4px_4px_0_var(--foreground)]">
+              <div className="border-3 border-foreground bg-yellow-300 p-4 shadow-[4px_4px_0_var(--foreground)]">
                 <p className="text-[10px] uppercase tracking-[0.18em] font-bold text-foreground/60">
                   Total Skills
                 </p>
@@ -46,7 +45,7 @@ export default function Skills({ categories }: SkillsProps) {
                   {totalSkills}
                 </p>
               </div>
-              <div className="border-2 border-foreground bg-green-400 p-4 shadow-[4px_4px_0_var(--foreground)]">
+              <div className="border-3 border-foreground bg-green-400 p-4 shadow-[4px_4px_0_var(--foreground)]">
                 <p className="text-[10px] uppercase tracking-[0.18em] font-bold text-foreground/60">
                   Status
                 </p>
@@ -63,14 +62,14 @@ export default function Skills({ categories }: SkillsProps) {
             {categories.map((category, index) => (
               <div
                 key={category.name}
-                className="border-2 border-foreground bg-background shadow-[4px_4px_0_var(--foreground)]"
+                className="border-3 border-foreground bg-background shadow-[4px_4px_0_var(--foreground)]"
               >
                 <div className="flex items-center justify-between border-b-2 border-foreground/20 px-4 py-3">
                   <p className="text-xs font-black uppercase tracking-[0.12em]">
                     {category.name}
                   </p>
                   <span
-                    className="w-3.5 h-3.5 border-2 border-foreground"
+                    className="w-3.5 h-3.5 border-3 border-foreground"
                     style={{
                       background:
                         index % 4 === 0
@@ -88,7 +87,7 @@ export default function Skills({ categories }: SkillsProps) {
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-2.5 py-1 text-xs md:text-sm font-bold uppercase border-2 border-foreground bg-accent shadow-[3px_3px_0_var(--foreground)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all"
+                      className="px-2.5 py-1 text-xs md:text-sm font-bold uppercase border-3 border-foreground bg-accent shadow-[3px_3px_0_var(--foreground)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all"
                     >
                       {skill}
                     </span>
