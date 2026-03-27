@@ -6,6 +6,7 @@ import HeroBackground from "@/components/HeroBackground";
 import Skills from "@/components/Skills";
 import Navbar from "@/components/Navbar";
 import Projects from "@/components/Projects";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 export const EMAIL = "kewvydev@outlook.com";
 
@@ -26,9 +27,8 @@ export const experiences = [
     location: "Alexandria, Virginia, United States",
     period: "Aug 2025 – Dec 2025",
     bullets: [
-      "Owned the full software development lifecycle (SDLC) for new features, from initial stakeholder interviews and requirements gathering through development, testing, and final validation.",
-      "Architected and developed a full-stack booking platform, transforming a phone-only booking process into a self-service web application with a dynamic pricing estimation engine that calculates service costs based on square footage ranges, cleaning types, frequency discounts, and optional extras, real-time availability, and automated workflow management.",
-      "Reduced manual scheduling operations by ˜25 hours/week through an admin dashboard featuring bulk actions, appointment status automation, JWT-based authentication with rate limiting, and comprehensive CRUD operations for appointments, blog posts, coupons, and gift cards.",
+      "Led the full SDLC from stakeholder interviews and requirements gathering to delivery, of a full-stack booking platform that replaced a phone-only process with a self-service web app featuring dynamic pricing estimation (square footage, cleaning type, frequency discounts, extras), real-time availability, and automated workflow management.",
+      "Reduced manual scheduling by ~25 hrs/week through an admin dashboard with bulk actions, appointment automation, JWT-based auth with rate limiting, and CRUD operations for appointments, blog posts, coupons, and gift cards.",
     ],
   },
   {
@@ -76,24 +76,28 @@ export const projects = [
 
 export const skillCategories = [
   {
+    name: "Programming Languages",
+    skills: ["Python", "TypeScript", "Java", "C/C++", "C# (.NET)"],
+  },
+  {
+    name: "Frontend",
+    skills: ["React", "Tailwind CSS", "HTML", "CSS"],
+  },
+  {
+    name: "Backend",
+    skills: ["REST APIs", "Spring Boot", "API Routes", "JWT", "Validation"],
+  },
+  {
+    name: "Database",
+    skills: ["PostgreSQL", "MSSQL Server", "Drizzle", "Prisma", "Neon"],
+  },
+  {
+    name: "Cloud / Infrastructure",
+    skills: ["Google Cloud", "Azure", "Docker", "Git/GitHub", "Ubuntu Server", "Windows Server"],
+  },
+  {
     name: "Languages",
-    skills: ["Java", "TypeScript", "JavaScript", "Python", "SQL", "HTML", "CSS"],
-  },
-  {
-    name: "Frameworks & Libraries",
-    skills: ["React", "Next.js", "Spring Boot", "Node.js", "Tailwind CSS", "Express"],
-  },
-  {
-    name: "Tools & Platforms",
-    skills: ["Git", "GitHub", "Docker", "Linux", "Vercel", "Figma"],
-  },
-  {
-    name: "Databases",
-    skills: ["PostgreSQL", "SQL Server", "MongoDB", "MySQL"],
-  },
-  {
-    name: "Concepts",
-    skills: ["REST APIs", "Agile / Scrum", "CI/CD", "Testing", "SDLC"],
+    skills: ["Spanish (Native)", "English (Advanced / B2)"],
   },
 ];
 
@@ -106,6 +110,7 @@ const MARQUEE_ITEMS = [
   "CLOUD SERVICES",
   "TEAM COLLABORATION",
   "USER EXPERIENCE DESIGN",
+  "SDLC",
   // add more jeje
 ];
 
@@ -122,11 +127,11 @@ export default function Home() {
 
         {/* Main content — centered */}
         <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 text-center pt-24 pb-16">
-          {/* Status pill */}
+          {/* Status pill
           <div className="mb-8 inline-flex items-center gap-2 border-2 border-foreground bg-white px-4 py-1.5 text-[11px] font-black uppercase tracking-widest shadow-[3px_3px_0_var(--foreground)]">
             <span className="h-2 w-2 bg-green-500 border border-foreground" />
-            SOFTWARE ENGINEERING STUDENT
-          </div>
+              Software Engineering Student
+          </div> */}
 
           {/* Headline */}
           <h1 className="font-heading font-black leading-[0.9] tracking-[-0.03em]">
@@ -142,7 +147,7 @@ export default function Home() {
           {/* One-liner */}
           <div className={`${BTN_BASE} mt-6 max-w-lg bg-yellow-300 text-foreground cursor-default`}>
             <p className="text-sm md:text-base leading-relaxed font-medium normal-case tracking-normal">
-              Full Stack Developer and Software Engineering Student from Baja California, Mexico. Passionate about emerging technologies and software development.
+              Software Engineering Student from Baja California, Mexico. Passionate about emerging technologies and software development.
             </p>
           </div>
 
@@ -202,14 +207,14 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="relative z-10 mx-auto max-w-4xl px-6 py-16 md:py-24 space-y-24">
-
-        {/* EXPERIENCE */}
+      {/* EXPERIENCE — full width background */}
+      <div className="relative z-10">
         <Experience />
+      </div>
 
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 md:py-24">
         {/* TECHNICAL SKILLS */}
         <Skills categories={skillCategories} />
-
       </div>
 
       {/* PROJECTS — full width */}
@@ -234,6 +239,8 @@ export default function Home() {
           This is an early version of my portfolio. Please check back soon for updates!
         </p>
       </footer>
+
+      <ScrollToTopButton />
     </main>
   );
 }

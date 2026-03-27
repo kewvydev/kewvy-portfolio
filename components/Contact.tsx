@@ -57,11 +57,18 @@ export default function Contact() {
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 py-20 md:py-28">
         {/* Main Card with heavy shadow */}
-        <div className="relative border-2 border-foreground bg-white shadow-[8px_8px_0_var(--foreground)]">
+        <div className="relative border-2 border-foreground bg-white shadow-[5px_5px_0_var(--foreground)]">
 
           {/* START A PROJECT badge - rotated right, larger */}
-          <div className="absolute -top-8 -left-3 rotate-[-10deg] z-10">
-            <span className="inline-block border-2 border-foreground bg-yellow-300 text-sm px-6 py-3 font-heading font-black uppercase tracking-[0.18em] shadow-[4px_4px_0_var(--foreground)]">
+          <div className="absolute -top-8 -left-3 rotate-[-10deg] z-10 shadow-[4px_4px_0_var(--foreground)]">
+            <span
+              className="inline-block border-2 border-foreground bg-yellow-300 text-md text-white px-6 py-3 font-heading font-black uppercase tracking-[0.18em]"
+              style={{
+                WebkitTextStroke: "2px var(--foreground)",
+                color: "white",
+                paintOrder: "stroke fill",
+              }}
+            >
               Start a Project
             </span>
           </div>
@@ -69,50 +76,31 @@ export default function Contact() {
           <div className="grid grid-cols-1 md:grid-cols-2">
 
             {/* LEFT — info */}
-            <div className="p-10 md:p-14 flex flex-col justify-between gap-10">
+            <div className="p-10 md:p-14 flex flex-col justify-between gap-10 mt-15">
               <div>
                 <h2 className="font-heading font-black leading-[0.9] tracking-tight">
-                  <span className="block text-5xl sm:text-6xl uppercase text-stroke-heading text-white">
+                  <span className="block text-5xl sm:text-6xl uppercase text-stroke-heading text-yellow-300">
                     LET&apos;S
                   </span>
-                  <span className="block text-5xl sm:text-6xl uppercase text-stroke-heading text-white">
+                  <span className="block text-5xl sm:text-6xl uppercase text-stroke-heading text-yellow-300">
                     TALK
                   </span>
-                  <span className="block text-5xl sm:text-6xl uppercase text-stroke-heading text-white">
+                  <span className="block text-5xl sm:text-6xl uppercase text-stroke-heading text-yellow-300">
                     CODE.
                   </span>
                 </h2>
 
-                <p className="mt-6 text-sm leading-relaxed text-muted-foreground max-w-xs font-mono">
+                <p className="mt-6 text-sm leading-relaxed text-muted-foreground max-w-xs font-mono font-black">
                   I am currently available for <br />
                   freelance work and open to <br />
                   part-time opportunities.
                 </p>
               </div>
-
-              <div className="space-y-4">
-                <a
-                  href={`mailto:${EMAIL}`}
-                  className="flex items-center gap-3 group"
-                >
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center border-3 border-foreground bg-foreground text-background">
-                    <Mail size={16} strokeWidth={2} />
-                  </span>
-                  <span className="text-sm font-bold break-all">{EMAIL}</span>
-                </a>
-
-                <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center border-3 border-foreground bg-foreground text-background">
-                    <MapPin size={16} strokeWidth={2} />
-                  </span>
-                  <span className="text-sm font-bold">Ensenada, Baja California</span>
-                </div>
-              </div>
             </div>
 
             {/* RIGHT — form in bordered box */}
             <div className="p-10 md:p-14">
-              <div className="border-3 border-foreground p-6">
+              <div className="border-2 border-foreground p-6">
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                   <div className="flex flex-col gap-1">
                     <label className="text-[10px] font-black uppercase tracking-[0.25em] text-foreground">
@@ -125,7 +113,7 @@ export default function Contact() {
                       placeholder="Name / Company"
                       value={form.name}
                       onChange={handleChange}
-                      className="w-full border-3 border-foreground bg-background px-3 py-2.5 text-sm font-medium placeholder:text-foreground/40 focus:outline-none"
+                      className="w-full border-2 border-foreground bg-background px-3 py-2.5 text-sm font-medium placeholder:text-foreground/40 focus:outline-none"
                     />
                   </div>
 
@@ -140,7 +128,7 @@ export default function Contact() {
                       placeholder="Email Address"
                       value={form.email}
                       onChange={handleChange}
-                      className="w-full border-3 border-foreground bg-background px-3 py-2.5 text-sm font-medium placeholder:text-foreground/40 focus:outline-none"
+                      className="w-full border-2 border-foreground bg-background px-3 py-2.5 text-sm font-medium placeholder:text-foreground/40 focus:outline-none"
                     />
                   </div>
 
@@ -155,14 +143,14 @@ export default function Contact() {
                       placeholder="Project details..."
                       value={form.message}
                       onChange={handleChange}
-                      className="w-full border-3 border-foreground bg-background px-3 py-2.5 text-sm font-medium placeholder:text-foreground/40 focus:outline-none resize-none"
+                      className="w-full border-2 border-foreground bg-background px-3 py-2.5 text-sm font-medium placeholder:text-foreground/40 focus:outline-none resize-none"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="w-full inline-flex items-center justify-center gap-2 border-3 border-foreground bg-blue-500 px-4 py-3 text-sm font-black uppercase tracking-widest text-white shadow-[4px_4px_0_var(--foreground)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full inline-flex items-center justify-center gap-2 border-2 border-foreground bg-blue-500 hover:bg-pink-400 px-4 py-3 text-sm font-black uppercase tracking-widest text-white shadow-[4px_4px_0_var(--foreground)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {status === "sent"
                       ? "Message Sent!"

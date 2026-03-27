@@ -155,3 +155,15 @@ h1, h2, h3, h4, h5, h6 {
   paint-order: stroke fill;
   text-shadow: 4px 4px 0px #000;
 }
+
+@utility text-stroke-base {
+  -webkit-text-stroke: 1px #000;
+  paint-order: stroke fill;
+  text-shadow: 2px 2px 0px #000;
+}
+
+@utility text-stroke-mini {
+  -webkit-text-stroke: 0.5px #000;
+  paint-order: stroke fill;
+  text-shadow: 1px 1px 0px #000;
+}

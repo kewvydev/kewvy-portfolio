@@ -30,7 +30,7 @@ export default function AboutMe() {
             </span>
           </h2>
           <p className="text-sm md:text-base leading-relaxed max-w-lg">
-            I&apos;m Kevin — a Software Engineering student based in Ensenada,
+            Hi! I&apos;m Kevin, a Software Engineering student based in Ensenada,
             Mexico. I enjoy building things that live on the web, from
             interactive front-ends to robust back-end services. My curiosity
             drives me to explore new technologies and solve problems that{" "}
@@ -66,7 +66,7 @@ export default function AboutMe() {
         {/* Quote card */}
         <div className="border-3 border-foreground bg-foreground text-background p-6 shadow-[5px_5px_0_var(--foreground)] flex items-center">
           <p className="text-lg md:text-xl font-black font-heading leading-snug">
-            &ldquo;I don&apos;t just write code — I build experiences that
+            &ldquo;I don&apos;t just write code, I build experiences that
             refuse to be boring.&rdquo;
           </p>
         </div>
