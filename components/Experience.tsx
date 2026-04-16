@@ -1,37 +1,122 @@
+"use client";
+
+import { useRef, useEffect } from "react";
 import { experiences } from "@/app/page";
 import { MapPin } from "lucide-react";
+import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
 
-const ACCENT_BG = ["bg-yellow-300", "bg-blue-400", "bg-pink-400", "bg-green-400"];
+const ACCENT_BG = [
+  "bg-yellow-300",
+  "bg-blue-400",
+  "bg-pink-400",
+  "bg-green-400",
+];
 
 export default function Experience() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (prefersReducedMotion()) return;
+
+    const ctx = gsap.context(() => {
+      // Heading
+      gsap.set(".exp-label", { autoAlpha: 0, y: 10 });
+      gsap.set(".exp-heading", { autoAlpha: 0, y: 30 });
+      gsap.set(".exp-badge", { autoAlpha: 0, scale: 0.8 });
+
+      const htl = gsap.timeline({
+        scrollTrigger: { trigger: ".exp-header", start: "top 80%" },
+      });
+      htl.to(".exp-label", { autoAlpha: 1, y: 0, duration: 0.4 });
+      htl.to(
+        ".exp-heading",
+        { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" },
+        "-=0.15"
+      );
+      htl.to(
+        ".exp-badge",
+        { autoAlpha: 1, scale: 1, duration: 0.4, ease: "back.out(1.5)" },
+        "-=0.2"
+      );
+
+      // Cards — alternate from left/right
+      gsap.utils.toArray<HTMLElement>(".exp-card").forEach((card, i) => {
+        const fromX = i % 2 === 0 ? -40 : 40;
+        gsap.set(card, { autoAlpha: 0, x: fromX });
+        ScrollTrigger.create({
+          trigger: card,
+          start: "top 85%",
+          onEnter: () => {
+            gsap.to(card, {
+              autoAlpha: 1,
+              x: 0,
+              duration: 0.6,
+              ease: "power2.out",
+            });
+          },
+          once: true,
+        });
+      });
+
+      // Timeline dots
+      gsap.utils.toArray<HTMLElement>(".exp-dot").forEach((dot) => {
+        gsap.set(dot, { autoAlpha: 0, scale: 0 });
+        ScrollTrigger.create({
+          trigger: dot,
+          start: "top 85%",
+          onEnter: () => {
+            gsap.to(dot, {
+              autoAlpha: 1,
+              scale: 1,
+              duration: 0.35,
+              ease: "back.out(2.5)",
+            });
+          },
+          once: true,
+        });
+      });
+
+      // Footer
+      gsap.set(".exp-footer", { autoAlpha: 0, y: 10 });
+      ScrollTrigger.create({
+        trigger: ".exp-footer",
+        start: "top 92%",
+        onEnter: () => {
+          gsap.to(".exp-footer", { autoAlpha: 1, y: 0, duration: 0.4 });
+        },
+        once: true,
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section
-      id="experience"
-      // className="w-full bg-yellow-300 border-b-2 border-foreground"
-    >
-      <div className="mx-auto max-w-7xl px-6 py-16">
-        {/* Heading */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+    <section id="experience" ref={sectionRef}>
+      <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+        <div className="exp-header flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-muted-foreground mb-3">
-              CAREER JOURNEY
+            <p className="exp-label text-[10px] uppercase tracking-[0.25em] font-bold text-muted-foreground mb-3">
+              Career Journey
             </p>
-            <h2 className="text-5xl md:text-6xl font-black font-heading leading-[0.9] tracking-tight text-stroke-heading text-white">
+            <h2 className="exp-heading text-5xl md:text-6xl font-black font-heading leading-[0.9] tracking-tight text-stroke-heading text-white">
               EXPERIENCE
-              <span className="text-red-500">_PATH</span>
+              <span className="text-yellow-400">_PATH</span>
             </h2>
           </div>
+          <p className="exp-badge text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground border-2 border-foreground px-3 py-1.5 bg-white shadow-[2px_2px_0_var(--foreground)]">
+            {experiences.length} Positions
+          </p>
         </div>
 
-        {/* Timeline */}
         <div className="relative">
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[3px] -translate-x-1/2 border-x-2 border-foreground bg-background" />
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 bg-foreground/20" />
 
-          <div className="space-y-6 md:space-y-8">
+          <div className="space-y-8 md:space-y-12">
             {experiences.map((exp, i) => (
-              <div key={i} className="relative">
+              <div key={i} className="exp-card relative">
                 <article
-                  className={`relative border-2 border-foreground bg-white p-5 shadow-[5px_5px_0_var(--foreground)] w-full md:w-[calc(50%-2.25rem)] ${
+                  className={`relative border-2 border-foreground bg-white p-6 shadow-[4px_4px_0_var(--foreground)] w-full md:w-[calc(50%-2.25rem)] ${
                     i % 2 === 0 ? "md:mr-auto" : "md:ml-auto"
                   }`}
                 >
@@ -40,7 +125,7 @@ export default function Experience() {
                   />
 
                   <div className="flex items-start justify-between gap-3">
-                    <p className="text-[10px] font-bold uppercase tracking-widest font-mono border-2 border-foreground bg-foreground text-background px-2.5 py-1 inline-block">
+                    <p className="text-[10px] font-bold uppercase tracking-widest font-mono border-2 border-foreground bg-foreground text-background px-3 py-1.5 inline-block">
                       {exp.period}
                     </p>
                     <span
@@ -50,24 +135,29 @@ export default function Experience() {
                     </span>
                   </div>
 
-                  <h3 className="mt-3 text-base md:text-lg font-black font-heading uppercase leading-snug">
+                  <h3 className="mt-4 text-base md:text-lg font-black font-heading uppercase leading-snug">
                     {exp.role}
                   </h3>
-                  <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1.5">
+                  <p className="text-xs text-muted-foreground mt-1.5 flex items-center gap-1.5">
                     <MapPin size={11} />
                     {exp.location}
                   </p>
                   <p className="text-sm font-bold mt-2">
                     <span className="text-muted-foreground">@</span>{" "}
-                    <span className="bg-yellow-300 px-1 border border-foreground">
+                    <span className="bg-yellow-300 px-1.5 border border-foreground">
                       {exp.company}
                     </span>
                   </p>
-                  <div className="my-3 border-t-2 border-dashed border-foreground/20" />
-                  <div className="space-y-2">
+                  <div className="my-4 border-t-2 border-dashed border-foreground/15" />
+                  <div className="space-y-2.5">
                     {exp.bullets.map((b, j) => (
-                      <p key={j} className="text-sm leading-relaxed text-muted-foreground">
-                        <span className="text-foreground font-bold mr-1.5">&gt;</span>
+                      <p
+                        key={j}
+                        className="text-sm leading-relaxed text-muted-foreground"
+                      >
+                        <span className="text-foreground font-bold mr-1.5">
+                          &gt;
+                        </span>
                         {b}
                       </p>
                     ))}
@@ -75,7 +165,7 @@ export default function Experience() {
                 </article>
 
                 <span
-                  className={`hidden md:flex absolute top-6 left-1/2 -translate-x-1/2 w-11 h-11 border-2 border-foreground ${ACCENT_BG[i % ACCENT_BG.length]} shadow-[3px_3px_0_var(--foreground)] font-black font-mono text-sm items-center justify-center`}
+                  className={`exp-dot hidden md:flex absolute top-6 left-1/2 -translate-x-1/2 w-10 h-10 border-2 border-foreground ${ACCENT_BG[i % ACCENT_BG.length]} shadow-[4px_4px_0_var(--foreground)] font-black font-mono text-sm items-center justify-center`}
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -84,7 +174,7 @@ export default function Experience() {
           </div>
         </div>
 
-        <div className="mt-8 border-t-2 border-foreground/20 pt-3 flex items-center justify-between">
+        <div className="exp-footer mt-12 border-t-2 border-foreground/20 pt-4 flex items-center justify-between">
           <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground">
             entries: {experiences.length}
           </p>

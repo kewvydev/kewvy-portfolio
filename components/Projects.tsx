@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import Image from "next/image";
 import {
   ArrowUpRight,
@@ -10,18 +10,111 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { projects } from "@/app/page";
+import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
 
 export default function Projects() {
   const [current, setCurrent] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const isFirstRender = useRef(true);
 
   const prev = useCallback(
     () => setCurrent((c) => (c === 0 ? projects.length - 1 : c - 1)),
-    [],
+    []
   );
   const next = useCallback(
     () => setCurrent((c) => (c === projects.length - 1 ? 0 : c + 1)),
-    [],
+    []
   );
+
+  // Section reveal
+  useEffect(() => {
+    if (prefersReducedMotion()) return;
+
+    const ctx = gsap.context(() => {
+      gsap.set(".proj-heading", { autoAlpha: 0, y: 40 });
+      gsap.set(".proj-counter", { autoAlpha: 0, scale: 0.8 });
+
+      ScrollTrigger.create({
+        trigger: ".proj-header",
+        start: "top 80%",
+        onEnter: () => {
+          gsap.to(".proj-heading", {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.7,
+            ease: "power3.out",
+          });
+          gsap.to(".proj-counter", {
+            autoAlpha: 1,
+            scale: 1,
+            duration: 0.5,
+            ease: "back.out(1.5)",
+            delay: 0.2,
+          });
+        },
+        once: true,
+      });
+
+      gsap.set(".proj-card", { autoAlpha: 0, y: 30 });
+      ScrollTrigger.create({
+        trigger: ".proj-card",
+        start: "top 85%",
+        onEnter: () => {
+          gsap.to(".proj-card", {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out",
+          });
+        },
+        once: true,
+      });
+
+      gsap.set(".proj-thumb", { autoAlpha: 0, y: 20 });
+      ScrollTrigger.create({
+        trigger: ".proj-thumbs",
+        start: "top 90%",
+        onEnter: () => {
+          gsap.to(".proj-thumb", {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.4,
+            stagger: 0.08,
+            ease: "power2.out",
+          });
+        },
+        once: true,
+      });
+
+      gsap.set(".proj-cta-strip", { autoAlpha: 0, y: 15 });
+      ScrollTrigger.create({
+        trigger: ".proj-cta-strip",
+        start: "top 92%",
+        onEnter: () => {
+          gsap.to(".proj-cta-strip", { autoAlpha: 1, y: 0, duration: 0.4 });
+        },
+        once: true,
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  // Carousel transition
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    if (prefersReducedMotion() || !contentRef.current) return;
+
+    gsap.fromTo(
+      contentRef.current,
+      { autoAlpha: 0.3, x: 15 },
+      { autoAlpha: 1, x: 0, duration: 0.35, ease: "power2.out" }
+    );
+  }, [current]);
 
   const project = projects[current];
   const num = `0${current + 1}`;
@@ -29,19 +122,19 @@ export default function Projects() {
   return (
     <section
       id="projects"
+      ref={sectionRef}
       className="w-full border-y-2 border-foreground bg-yellow-300"
     >
-      {/* Header */}
-      <div className="mx-auto max-w-7xl px-6 pt-16 pb-10 md:pt-24">
+      <div className="proj-header mx-auto max-w-7xl px-6 pt-20 pb-10 md:pt-28">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-          <h2 className="font-heading font-black leading-[0.9] tracking-tighter">
+          <h2 className="proj-heading font-heading font-black leading-[0.9] tracking-tighter">
             <span className="block text-5xl sm:text-7xl md:text-[7rem] uppercase text-white text-stroke-heading">
               SELECTED <br /> PROJECTS
             </span>
           </h2>
 
-          <div className="flex flex-col items-start md:items-end gap-1 mb-3 shrink-0">
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-foreground/60">
+          <div className="proj-counter flex flex-col items-start md:items-end gap-1 mb-3 shrink-0">
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-foreground/50">
               Total Projects
             </span>
             <span className="text-5xl font-black font-heading leading-none text-foreground">
@@ -50,41 +143,38 @@ export default function Projects() {
           </div>
         </div>
 
-        <div className="mt-8 border-t-2 border-dashed border-foreground/40" />
+        <div className="mt-8 border-t-2 border-dashed border-foreground/30" />
       </div>
 
-      {/* Carousel */}
       <div className="mx-auto max-w-7xl px-6 pb-20">
-        {/* Navigation arrows + counter */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
             <button
               onClick={prev}
               aria-label="Previous project"
-              className="inline-flex items-center justify-center w-12 h-12 border-2 border-foreground bg-background shadow-[3px_3px_0_var(--foreground)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all active:scale-95"
+              className="inline-flex items-center justify-center w-12 h-12 border-2 border-foreground bg-white shadow-[4px_4px_0_var(--foreground)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all active:scale-95"
             >
               <ChevronLeft size={22} strokeWidth={3} />
             </button>
             <button
               onClick={next}
               aria-label="Next project"
-              className="inline-flex items-center justify-center w-12 h-12 border-2 border-foreground bg-background shadow-[3px_3px_0_var(--foreground)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all active:scale-95"
+              className="inline-flex items-center justify-center w-12 h-12 border-2 border-foreground bg-white shadow-[4px_4px_0_var(--foreground)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all active:scale-95"
             >
               <ChevronRight size={22} strokeWidth={3} />
             </button>
           </div>
 
-          {/* Dot indicators */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             {projects.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
                 aria-label={`Go to project ${i + 1}`}
-                className={`w-3 h-3 border-2 border-foreground transition-all ${
+                className={`w-3.5 h-3.5 border-2 border-foreground transition-all ${
                   i === current
-                    ? "bg-foreground scale-125"
-                    : "bg-background hover:bg-foreground/30"
+                    ? "bg-foreground scale-110"
+                    : "bg-white hover:bg-foreground/30"
                 }`}
               />
             ))}
@@ -94,11 +184,9 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* Main card */}
-        <article className="border-2 border-foreground bg-background shadow-[6px_6px_0_var(--foreground)] overflow-hidden group">
-          {/* Top bar */}
-          <div className="flex items-center justify-between border-b-2 border-foreground px-5 py-3 bg-foreground">
-            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-background/60">
+        <article className="proj-card border-2 border-foreground bg-white shadow-[6px_6px_0_var(--foreground)] overflow-hidden group">
+          <div className="flex items-center justify-between border-b-2 border-foreground px-6 py-3.5 bg-foreground">
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-background/50">
               Featured Project
             </span>
             <span className="text-xs font-black text-background font-mono">
@@ -106,10 +194,9 @@ export default function Projects() {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            {/* Image — takes full half of the card */}
+          <div ref={contentRef} className="grid grid-cols-1 md:grid-cols-2">
             {project.image ? (
-              <div className="relative w-full aspect-4/3 md:aspect-auto md:min-h-[420px] border-b-2 md:border-b-0 md:border-r-2 border-foreground overflow-hidden">
+              <div className="relative w-full aspect-4/3 md:aspect-auto md:min-h-[440px] border-b-2 md:border-b-0 md:border-r-2 border-foreground overflow-hidden">
                 <Image
                   key={project.image}
                   src={project.image}
@@ -119,7 +206,7 @@ export default function Projects() {
                 />
               </div>
             ) : (
-              <div className="relative w-full aspect-4/3 md:aspect-auto md:min-h-[420px] border-b-2 md:border-b-0 md:border-r-2 border-foreground bg-foreground/5 flex items-center justify-center">
+              <div className="relative w-full aspect-4/3 md:aspect-auto md:min-h-[440px] border-b-2 md:border-b-0 md:border-r-2 border-foreground bg-foreground/5 flex items-center justify-center">
                 <MonitorSmartphone
                   size={64}
                   strokeWidth={1.5}
@@ -131,8 +218,7 @@ export default function Projects() {
               </div>
             )}
 
-            {/* Content */}
-            <div className="relative p-8 md:p-10 flex flex-col justify-center">
+            <div className="relative p-8 md:p-12 flex flex-col justify-center">
               <span
                 className="absolute -top-4 -right-2 text-[10rem] md:text-[14rem] font-black font-heading leading-none select-none pointer-events-none"
                 style={{ color: "var(--foreground)", opacity: 0.04 }}
@@ -140,7 +226,7 @@ export default function Projects() {
                 {num}
               </span>
 
-              <h3 className="relative text-2xl md:text-4xl font-black font-heading uppercase leading-tight mb-4 text-stroke-base text-white">
+              <h3 className="relative text-2xl md:text-3xl font-black font-heading uppercase leading-tight mb-4">
                 {project.title}
               </h3>
 
@@ -152,7 +238,7 @@ export default function Projects() {
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2.5 py-1 text-[11px] font-bold uppercase border-2 border-foreground bg-yellow-300 shadow-[2px_2px_0_var(--foreground)]"
+                    className="px-3 py-1 text-[11px] font-bold uppercase border-2 border-foreground bg-yellow-300 shadow-[2px_2px_0_var(--foreground)]"
                   >
                     {tag}
                   </span>
@@ -165,7 +251,7 @@ export default function Projects() {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-widest border-2 border-foreground bg-foreground text-background shadow-[3px_3px_0_#facc15] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all"
+                    className="inline-flex items-center gap-2 px-6 py-3 text-xs font-black uppercase tracking-widest border-2 border-foreground bg-foreground text-background shadow-[4px_4px_0_#facc15] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
                   >
                     <ArrowUpRight size={14} strokeWidth={3} />
                     Live Demo
@@ -176,7 +262,7 @@ export default function Projects() {
                     href={project.code}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-widest border-2 border-foreground bg-background shadow-[3px_3px_0_var(--foreground)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all"
+                    className="inline-flex items-center gap-2 px-6 py-3 text-xs font-black uppercase tracking-widest border-2 border-foreground bg-white shadow-[4px_4px_0_var(--foreground)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
                   >
                     <Github size={14} strokeWidth={2.5} />
                     Code
@@ -187,19 +273,18 @@ export default function Projects() {
           </div>
         </article>
 
-        {/* Thumbnail strip */}
-        <div className="mt-4 grid grid-cols-3 gap-3">
+        <div className="proj-thumbs mt-5 grid grid-cols-3 gap-3">
           {projects.map((p, i) => (
             <button
               key={p.title}
               onClick={() => setCurrent(i)}
-              className={`border-2 border-foreground overflow-hidden transition-all duration-200 ${
+              className={`proj-thumb border-2 border-foreground overflow-hidden transition-all duration-200 ${
                 i === current
                   ? "shadow-[4px_4px_0_var(--foreground)] ring-2 ring-foreground"
-                  : "opacity-60 hover:opacity-100 shadow-[3px_3px_0_var(--foreground)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]"
+                  : "opacity-60 hover:opacity-100 shadow-[4px_4px_0_var(--foreground)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px]"
               }`}
             >
-              <div className="flex items-center gap-2 px-3 py-2 bg-foreground">
+              <div className="flex items-center gap-2 px-3 py-2.5 bg-foreground">
                 <span className="text-[10px] font-black text-background font-mono">
                   0{i + 1}
                 </span>
@@ -208,7 +293,7 @@ export default function Projects() {
                 </span>
               </div>
               {p.image ? (
-                <div className="relative w-full h-20 sm:h-28 bg-background">
+                <div className="relative w-full h-24 sm:h-32 bg-white">
                   <Image
                     src={p.image}
                     alt={p.title}
@@ -217,7 +302,7 @@ export default function Projects() {
                   />
                 </div>
               ) : (
-                <div className="w-full h-20 sm:h-28 bg-foreground/5 flex items-center justify-center">
+                <div className="w-full h-24 sm:h-32 bg-foreground/5 flex items-center justify-center">
                   <MonitorSmartphone
                     size={24}
                     strokeWidth={1.5}
@@ -229,8 +314,7 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Bottom CTA strip */}
-        <div className="mt-6 border-2 border-foreground bg-foreground px-6 py-4 shadow-[5px_5px_0_#facc15] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="proj-cta-strip mt-6 border-2 border-foreground bg-foreground px-6 py-4 shadow-[4px_4px_0_#facc15] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="text-sm font-black uppercase tracking-widest text-background">
             More projects on my GitHub
           </p>
@@ -238,7 +322,7 @@ export default function Projects() {
             href="https://github.com/kewvydev"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-widest border-2 border-background text-background shadow-[3px_3px_0_#facc15] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all"
+            className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-widest border-2 border-background text-background shadow-[4px_4px_0_#facc15] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
           >
             <Github size={14} strokeWidth={2.5} />
             github.com/kewvydev

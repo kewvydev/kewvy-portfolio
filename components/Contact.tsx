@@ -1,14 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Mail, MapPin, Send } from "lucide-react";
 import { EMAIL } from "@/app/page";
+import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<
     "idle" | "sending" | "sent" | "error"
   >("idle");
+  const sectionRef = useRef<HTMLElement>(null);
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -38,12 +40,91 @@ export default function Contact() {
     }
   }
 
+  useEffect(() => {
+    if (prefersReducedMotion()) return;
+
+    const ctx = gsap.context(() => {
+      // Card entrance
+      gsap.set(".contact-card", { autoAlpha: 0, y: 40 });
+      ScrollTrigger.create({
+        trigger: ".contact-card",
+        start: "top 82%",
+        onEnter: () => {
+          gsap.to(".contact-card", {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power3.out",
+          });
+        },
+        once: true,
+      });
+
+      // Badge wobble settle
+      gsap.set(".contact-badge", { autoAlpha: 0, rotation: -20, scale: 0.7 });
+      ScrollTrigger.create({
+        trigger: ".contact-card",
+        start: "top 80%",
+        onEnter: () => {
+          gsap.to(".contact-badge", {
+            autoAlpha: 1,
+            rotation: -8,
+            scale: 1,
+            duration: 0.5,
+            ease: "back.out(2)",
+            delay: 0.3,
+          });
+        },
+        once: true,
+      });
+
+      // Left side from left
+      gsap.set(".contact-left", { autoAlpha: 0, x: -30 });
+      ScrollTrigger.create({
+        trigger: ".contact-left",
+        start: "top 85%",
+        onEnter: () => {
+          gsap.to(".contact-left", {
+            autoAlpha: 1,
+            x: 0,
+            duration: 0.5,
+            ease: "power2.out",
+            delay: 0.2,
+          });
+        },
+        once: true,
+      });
+
+      // Form from right
+      gsap.set(".contact-form", { autoAlpha: 0, x: 30 });
+      ScrollTrigger.create({
+        trigger: ".contact-form",
+        start: "top 85%",
+        onEnter: () => {
+          gsap.to(".contact-form", {
+            autoAlpha: 1,
+            x: 0,
+            duration: 0.5,
+            ease: "power2.out",
+            delay: 0.3,
+          });
+        },
+        once: true,
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const inputBase =
+    "w-full border-2 border-foreground bg-background px-4 py-3 text-sm font-medium placeholder:text-foreground/30 focus:outline-none focus:shadow-[4px_4px_0_var(--foreground)] transition-shadow";
+
   return (
     <section
       id="contact"
+      ref={sectionRef}
       className="w-full border-t-2 border-foreground bg-background relative overflow-hidden"
     >
-      {/* Grid background */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -56,53 +137,54 @@ export default function Contact() {
       />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 py-20 md:py-28">
-        {/* Main Card with heavy shadow */}
-        <div className="relative border-2 border-foreground bg-white shadow-[5px_5px_0_var(--foreground)]">
-
-          {/* START A PROJECT badge - rotated right, larger */}
-          <div className="absolute -top-8 -left-3 rotate-[-10deg] z-10 shadow-[4px_4px_0_var(--foreground)]">
-            <span
-              className="inline-block border-2 border-foreground bg-yellow-300 text-md text-white px-6 py-3 font-heading font-black uppercase tracking-[0.18em]"
-              style={{
-                WebkitTextStroke: "2px var(--foreground)",
-                color: "white",
-                paintOrder: "stroke fill",
-              }}
-            >
+        <div className="contact-card relative border-2 border-foreground bg-white shadow-[6px_6px_0_var(--foreground)]">
+          <div className="contact-badge absolute -top-5 -left-2 rotate-[-8deg] z-10">
+            <span className="inline-block border-2 border-foreground bg-yellow-300 px-5 py-2 font-heading font-black text-sm uppercase tracking-widest text-foreground shadow-[4px_4px_0_var(--foreground)]">
               Start a Project
             </span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2">
-
-            {/* LEFT — info */}
-            <div className="p-10 md:p-14 flex flex-col justify-between gap-10 mt-15">
+            <div className="contact-left p-10 md:p-14 flex flex-col justify-center gap-8">
               <div>
                 <h2 className="font-heading font-black leading-[0.9] tracking-tight">
-                  <span className="block text-5xl sm:text-6xl uppercase text-stroke-heading text-yellow-300">
-                    LET&apos;S
+                  <span className="block text-5xl sm:text-6xl uppercase">
+                    LET&apos;S TALK
                   </span>
-                  <span className="block text-5xl sm:text-6xl uppercase text-stroke-heading text-yellow-300">
-                    TALK
-                  </span>
-                  <span className="block text-5xl sm:text-6xl uppercase text-stroke-heading text-yellow-300">
-                    CODE.
+                  <span className="block text-5xl sm:text-6xl uppercase text-stroke-heading text-white">
+                    CODE<span className="text-yellow-400">.</span>
                   </span>
                 </h2>
 
-                <p className="mt-6 text-sm leading-relaxed text-muted-foreground max-w-xs font-mono font-black">
-                  I am currently available for <br />
-                  freelance work and open to <br />
-                  part-time opportunities.
+                <p className="mt-6 text-sm leading-relaxed text-muted-foreground max-w-xs">
+                  Currently available for freelance work and open to part-time
+                  opportunities.
                 </p>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <a
+                  href={`mailto:${EMAIL}`}
+                  className="flex items-center gap-3 text-sm font-bold text-foreground hover:text-yellow-600 transition-colors"
+                >
+                  <span className="inline-flex items-center justify-center w-8 h-8 border-2 border-foreground bg-yellow-300 shrink-0">
+                    <Mail size={14} strokeWidth={2.5} />
+                  </span>
+                  {EMAIL}
+                </a>
+                <div className="flex items-center gap-3 text-sm font-bold text-muted-foreground">
+                  <span className="inline-flex items-center justify-center w-8 h-8 border-2 border-foreground bg-white shrink-0">
+                    <MapPin size={14} strokeWidth={2.5} />
+                  </span>
+                  Baja California, Mexico
+                </div>
               </div>
             </div>
 
-            {/* RIGHT — form in bordered box */}
-            <div className="p-10 md:p-14">
+            <div className="contact-form p-8 md:p-14 border-t-2 md:border-t-0 md:border-l-2 border-foreground">
               <div className="border-2 border-foreground p-6">
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                  <div className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1.5">
                     <label className="text-[10px] font-black uppercase tracking-[0.25em] text-foreground">
                       Identity
                     </label>
@@ -113,11 +195,11 @@ export default function Contact() {
                       placeholder="Name / Company"
                       value={form.name}
                       onChange={handleChange}
-                      className="w-full border-2 border-foreground bg-background px-3 py-2.5 text-sm font-medium placeholder:text-foreground/40 focus:outline-none"
+                      className={inputBase}
                     />
                   </div>
 
-                  <div className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1.5">
                     <label className="text-[10px] font-black uppercase tracking-[0.25em] text-foreground">
                       Coordinates
                     </label>
@@ -128,11 +210,11 @@ export default function Contact() {
                       placeholder="Email Address"
                       value={form.email}
                       onChange={handleChange}
-                      className="w-full border-2 border-foreground bg-background px-3 py-2.5 text-sm font-medium placeholder:text-foreground/40 focus:outline-none"
+                      className={inputBase}
                     />
                   </div>
 
-                  <div className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1.5">
                     <label className="text-[10px] font-black uppercase tracking-[0.25em] text-foreground">
                       Transmission
                     </label>
@@ -143,15 +225,16 @@ export default function Contact() {
                       placeholder="Project details..."
                       value={form.message}
                       onChange={handleChange}
-                      className="w-full border-2 border-foreground bg-background px-3 py-2.5 text-sm font-medium placeholder:text-foreground/40 focus:outline-none resize-none"
+                      className={`${inputBase} resize-none`}
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="w-full inline-flex items-center justify-center gap-2 border-2 border-foreground bg-blue-500 hover:bg-pink-400 px-4 py-3 text-sm font-black uppercase tracking-widest text-white shadow-[4px_4px_0_var(--foreground)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full inline-flex items-center justify-center gap-2.5 border-2 border-foreground bg-foreground text-background px-4 py-3.5 text-sm font-black uppercase tracking-widest shadow-[4px_4px_0_#facc15] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                   >
+                    <Send size={14} strokeWidth={2.5} />
                     {status === "sent"
                       ? "Message Sent!"
                       : status === "sending"
