@@ -32,70 +32,66 @@ export default function Projects() {
     if (prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
-      gsap.set(".proj-heading", { autoAlpha: 0, y: 40 });
-      gsap.set(".proj-counter", { autoAlpha: 0, scale: 0.8 });
+      const onScroll = (
+        trigger: string | Element,
+        anim: gsap.core.Timeline | gsap.core.Tween,
+        start = "top 85%"
+      ) => {
+        ScrollTrigger.create({
+          trigger,
+          start,
+          onEnter: () => anim.restart(),
+          onEnterBack: () => anim.restart(),
+          onLeave: () => anim.pause(0),
+          onLeaveBack: () => anim.pause(0),
+        });
+      };
 
-      ScrollTrigger.create({
-        trigger: ".proj-header",
-        start: "top 80%",
-        onEnter: () => {
-          gsap.to(".proj-heading", {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.7,
-            ease: "power3.out",
-          });
-          gsap.to(".proj-counter", {
-            autoAlpha: 1,
-            scale: 1,
-            duration: 0.5,
-            ease: "back.out(1.5)",
-            delay: 0.2,
-          });
-        },
-        once: true,
-      });
+      // Heading + counter
+      const headerTl = gsap.timeline({ paused: true });
+      headerTl.fromTo(
+        ".proj-heading",
+        { autoAlpha: 0, y: 40 },
+        { autoAlpha: 1, y: 0, duration: 0.7, ease: "power3.out" }
+      );
+      headerTl.fromTo(
+        ".proj-counter",
+        { autoAlpha: 0, scale: 0.8 },
+        { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(1.5)" },
+        "-=0.4"
+      );
+      onScroll(".proj-header", headerTl, "top 80%");
 
-      gsap.set(".proj-card", { autoAlpha: 0, y: 30 });
-      ScrollTrigger.create({
-        trigger: ".proj-card",
-        start: "top 85%",
-        onEnter: () => {
-          gsap.to(".proj-card", {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.6,
-            ease: "power2.out",
-          });
-        },
-        once: true,
-      });
+      // Main card
+      const cardTw = gsap.fromTo(
+        ".proj-card",
+        { autoAlpha: 0, y: 30 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          paused: true,
+        }
+      );
+      onScroll(".proj-card", cardTw);
 
-      gsap.set(".proj-thumb", { autoAlpha: 0, y: 20 });
-      ScrollTrigger.create({
-        trigger: ".proj-thumbs",
-        start: "top 90%",
-        onEnter: () => {
-          gsap.to(".proj-thumb", {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.4,
-            stagger: 0.08,
-            ease: "power2.out",
-          });
-        },
-        once: true,
-      });
+      // Thumbnails — y-only to avoid conflict with CSS opacity classes
+      const thumbTl = gsap.timeline({ paused: true });
+      thumbTl.fromTo(
+        ".proj-thumb",
+        { y: 20 },
+        { y: 0, duration: 0.4, stagger: 0.08, ease: "power2.out" }
+      );
+      onScroll(".proj-thumbs", thumbTl, "top 90%");
 
-      gsap.set(".proj-cta-strip", { autoAlpha: 0, y: 15 });
-      ScrollTrigger.create({
-        trigger: ".proj-cta-strip",
-        start: "top 92%",
-        onEnter: () => {
-          gsap.to(".proj-cta-strip", { autoAlpha: 1, y: 0, duration: 0.4 });
-        },
-        once: true,
-      });
+      // CTA strip
+      const ctaTw = gsap.fromTo(
+        ".proj-cta-strip",
+        { autoAlpha: 0, y: 15 },
+        { autoAlpha: 1, y: 0, duration: 0.4, paused: true }
+      );
+      onScroll(".proj-cta-strip", ctaTw, "top 92%");
     }, sectionRef);
 
     return () => ctx.revert();

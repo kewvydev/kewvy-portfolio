@@ -19,73 +19,82 @@ export default function Experience() {
     if (prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
-      // Heading
-      gsap.set(".exp-label", { autoAlpha: 0, y: 10 });
-      gsap.set(".exp-heading", { autoAlpha: 0, y: 30 });
-      gsap.set(".exp-badge", { autoAlpha: 0, scale: 0.8 });
+      const onScroll = (
+        trigger: string | Element,
+        anim: gsap.core.Timeline | gsap.core.Tween,
+        start = "top 85%"
+      ) => {
+        ScrollTrigger.create({
+          trigger,
+          start,
+          onEnter: () => anim.restart(),
+          onEnterBack: () => anim.restart(),
+          onLeave: () => anim.pause(0),
+          onLeaveBack: () => anim.pause(0),
+        });
+      };
 
-      const htl = gsap.timeline({
-        scrollTrigger: { trigger: ".exp-header", start: "top 80%" },
-      });
-      htl.to(".exp-label", { autoAlpha: 1, y: 0, duration: 0.4 });
-      htl.to(
+      // Heading timeline
+      const htl = gsap.timeline({ paused: true });
+      htl.fromTo(
+        ".exp-label",
+        { autoAlpha: 0, y: 10 },
+        { autoAlpha: 1, y: 0, duration: 0.4 }
+      );
+      htl.fromTo(
         ".exp-heading",
+        { autoAlpha: 0, y: 30 },
         { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" },
         "-=0.15"
       );
-      htl.to(
+      htl.fromTo(
         ".exp-badge",
+        { autoAlpha: 0, scale: 0.8 },
         { autoAlpha: 1, scale: 1, duration: 0.4, ease: "back.out(1.5)" },
         "-=0.2"
       );
+      onScroll(".exp-header", htl, "top 80%");
 
       // Cards — alternate from left/right
       gsap.utils.toArray<HTMLElement>(".exp-card").forEach((card, i) => {
         const fromX = i % 2 === 0 ? -40 : 40;
-        gsap.set(card, { autoAlpha: 0, x: fromX });
-        ScrollTrigger.create({
-          trigger: card,
-          start: "top 85%",
-          onEnter: () => {
-            gsap.to(card, {
-              autoAlpha: 1,
-              x: 0,
-              duration: 0.6,
-              ease: "power2.out",
-            });
-          },
-          once: true,
-        });
+        const tw = gsap.fromTo(
+          card,
+          { autoAlpha: 0, x: fromX },
+          {
+            autoAlpha: 1,
+            x: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            paused: true,
+          }
+        );
+        onScroll(card, tw);
       });
 
       // Timeline dots
       gsap.utils.toArray<HTMLElement>(".exp-dot").forEach((dot) => {
-        gsap.set(dot, { autoAlpha: 0, scale: 0 });
-        ScrollTrigger.create({
-          trigger: dot,
-          start: "top 85%",
-          onEnter: () => {
-            gsap.to(dot, {
-              autoAlpha: 1,
-              scale: 1,
-              duration: 0.35,
-              ease: "back.out(2.5)",
-            });
-          },
-          once: true,
-        });
+        const tw = gsap.fromTo(
+          dot,
+          { autoAlpha: 0, scale: 0 },
+          {
+            autoAlpha: 1,
+            scale: 1,
+            duration: 0.35,
+            ease: "back.out(2.5)",
+            paused: true,
+          }
+        );
+        onScroll(dot, tw);
       });
 
       // Footer
-      gsap.set(".exp-footer", { autoAlpha: 0, y: 10 });
-      ScrollTrigger.create({
-        trigger: ".exp-footer",
-        start: "top 92%",
-        onEnter: () => {
-          gsap.to(".exp-footer", { autoAlpha: 1, y: 0, duration: 0.4 });
-        },
-        once: true,
-      });
+      const ftw = gsap.fromTo(
+        ".exp-footer",
+        { autoAlpha: 0, y: 10 },
+        { autoAlpha: 1, y: 0, duration: 0.4, paused: true }
+      );
+      onScroll(".exp-footer", ftw, "top 92%");
     }, sectionRef);
 
     return () => ctx.revert();

@@ -21,102 +21,87 @@ export default function AboutMe() {
     if (prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
+      const onScroll = (
+        trigger: string | Element,
+        anim: gsap.core.Timeline | gsap.core.Tween,
+        start = "top 85%"
+      ) => {
+        ScrollTrigger.create({
+          trigger,
+          start,
+          onEnter: () => anim.restart(),
+          onEnterBack: () => anim.restart(),
+          onLeave: () => anim.pause(0),
+          onLeaveBack: () => anim.pause(0),
+        });
+      };
+
       // Bio card from left
-      gsap.set(".about-bio", { autoAlpha: 0, x: -35 });
-      ScrollTrigger.create({
-        trigger: ".about-bio",
-        start: "top 85%",
-        onEnter: () => {
-          gsap.to(".about-bio", {
-            autoAlpha: 1,
-            x: 0,
-            duration: 0.6,
-            ease: "power2.out",
-          });
-        },
-        once: true,
-      });
+      const bioTw = gsap.fromTo(
+        ".about-bio",
+        { autoAlpha: 0, x: -35 },
+        { autoAlpha: 1, x: 0, duration: 0.6, ease: "power2.out", paused: true }
+      );
+      onScroll(".about-bio", bioTw);
 
       // Education card from right
-      gsap.set(".about-edu", { autoAlpha: 0, x: 25 });
-      ScrollTrigger.create({
-        trigger: ".about-edu",
-        start: "top 85%",
-        onEnter: () => {
-          gsap.to(".about-edu", {
-            autoAlpha: 1,
-            x: 0,
-            duration: 0.5,
-            ease: "power2.out",
-            delay: 0.1,
-          });
-        },
-        once: true,
-      });
+      const eduTw = gsap.fromTo(
+        ".about-edu",
+        { autoAlpha: 0, x: 25 },
+        { autoAlpha: 1, x: 0, duration: 0.5, ease: "power2.out", paused: true }
+      );
+      onScroll(".about-edu", eduTw);
 
       // Photo scale + slide
-      gsap.set(".about-photo", { autoAlpha: 0, scale: 0.9, x: 20 });
-      ScrollTrigger.create({
-        trigger: ".about-photo",
-        start: "top 85%",
-        onEnter: () => {
-          gsap.to(".about-photo", {
-            autoAlpha: 1,
-            scale: 1,
-            x: 0,
-            duration: 0.5,
-            ease: "power2.out",
-            delay: 0.2,
-          });
-        },
-        once: true,
-      });
+      const photoTw = gsap.fromTo(
+        ".about-photo",
+        { autoAlpha: 0, scale: 0.9, x: 20 },
+        {
+          autoAlpha: 1,
+          scale: 1,
+          x: 0,
+          duration: 0.5,
+          ease: "power2.out",
+          paused: true,
+        }
+      );
+      onScroll(".about-photo", photoTw);
 
       // Quote card from below with slight rotation settle
-      gsap.set(".about-quote", { autoAlpha: 0, y: 25, rotation: -2 });
-      ScrollTrigger.create({
-        trigger: ".about-quote",
-        start: "top 88%",
-        onEnter: () => {
-          gsap.to(".about-quote", {
-            autoAlpha: 1,
-            y: 0,
-            rotation: 0,
-            duration: 0.5,
-            ease: "back.out(1.2)",
-          });
-        },
-        once: true,
-      });
+      const quoteTw = gsap.fromTo(
+        ".about-quote",
+        { autoAlpha: 0, y: 25, rotation: -2 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          rotation: 0,
+          duration: 0.5,
+          ease: "back.out(1.2)",
+          paused: true,
+        }
+      );
+      onScroll(".about-quote", quoteTw, "top 88%");
 
       // Terminal card + line stagger
-      gsap.set(".about-terminal", { autoAlpha: 0, y: 30 });
-      gsap.set(".terminal-line", { autoAlpha: 0, x: -10 });
-      ScrollTrigger.create({
-        trigger: ".about-terminal",
-        start: "top 88%",
-        onEnter: () => {
-          const tl = gsap.timeline();
-          tl.to(".about-terminal", {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.5,
-            ease: "power2.out",
-          });
-          tl.to(
-            ".terminal-line",
-            {
-              autoAlpha: 1,
-              x: 0,
-              duration: 0.25,
-              stagger: 0.06,
-              ease: "power2.out",
-            },
-            "-=0.1"
-          );
+      const termTl = gsap.timeline({ paused: true });
+      termTl.fromTo(
+        ".about-terminal",
+        { autoAlpha: 0, y: 30 },
+        { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out" }
+      );
+      termTl.fromTo(
+        ".terminal-line",
+        { autoAlpha: 0, x: -10 },
+        {
+          autoAlpha: 1,
+          x: 0,
+          duration: 0.25,
+          stagger: 0.06,
+          ease: "power2.out",
         },
-        once: true,
-      });
+        "-=0.1"
+      );
+      onScroll(".about-terminal", termTl, "top 88%");
     }, sectionRef);
 
     return () => ctx.revert();

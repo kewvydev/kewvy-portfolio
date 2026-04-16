@@ -44,73 +44,60 @@ export default function Contact() {
     if (prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
+      const onScroll = (
+        trigger: string | Element,
+        anim: gsap.core.Timeline | gsap.core.Tween,
+        start = "top 85%"
+      ) => {
+        ScrollTrigger.create({
+          trigger,
+          start,
+          onEnter: () => anim.restart(),
+          onEnterBack: () => anim.restart(),
+          onLeave: () => anim.pause(0),
+          onLeaveBack: () => anim.pause(0),
+        });
+      };
+
       // Card entrance
-      gsap.set(".contact-card", { autoAlpha: 0, y: 40 });
-      ScrollTrigger.create({
-        trigger: ".contact-card",
-        start: "top 82%",
-        onEnter: () => {
-          gsap.to(".contact-card", {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.6,
-            ease: "power3.out",
-          });
-        },
-        once: true,
-      });
+      const cardTw = gsap.fromTo(
+        ".contact-card",
+        { autoAlpha: 0, y: 40 },
+        { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out", paused: true }
+      );
+      onScroll(".contact-card", cardTw, "top 82%");
 
       // Badge wobble settle
-      gsap.set(".contact-badge", { autoAlpha: 0, rotation: -20, scale: 0.7 });
-      ScrollTrigger.create({
-        trigger: ".contact-card",
-        start: "top 80%",
-        onEnter: () => {
-          gsap.to(".contact-badge", {
-            autoAlpha: 1,
-            rotation: -8,
-            scale: 1,
-            duration: 0.5,
-            ease: "back.out(2)",
-            delay: 0.3,
-          });
-        },
-        once: true,
-      });
+      const badgeTw = gsap.fromTo(
+        ".contact-badge",
+        { autoAlpha: 0, rotation: -20, scale: 0.7 },
+        {
+          autoAlpha: 1,
+          rotation: -8,
+          scale: 1,
+          duration: 0.5,
+          ease: "back.out(2)",
+          delay: 0.3,
+          paused: true,
+        }
+      );
+      onScroll(".contact-card", badgeTw, "top 80%");
 
       // Left side from left
-      gsap.set(".contact-left", { autoAlpha: 0, x: -30 });
-      ScrollTrigger.create({
-        trigger: ".contact-left",
-        start: "top 85%",
-        onEnter: () => {
-          gsap.to(".contact-left", {
-            autoAlpha: 1,
-            x: 0,
-            duration: 0.5,
-            ease: "power2.out",
-            delay: 0.2,
-          });
-        },
-        once: true,
-      });
+      const leftTw = gsap.fromTo(
+        ".contact-left",
+        { autoAlpha: 0, x: -30 },
+        { autoAlpha: 1, x: 0, duration: 0.5, ease: "power2.out", paused: true }
+      );
+      onScroll(".contact-left", leftTw);
 
       // Form from right
-      gsap.set(".contact-form", { autoAlpha: 0, x: 30 });
-      ScrollTrigger.create({
-        trigger: ".contact-form",
-        start: "top 85%",
-        onEnter: () => {
-          gsap.to(".contact-form", {
-            autoAlpha: 1,
-            x: 0,
-            duration: 0.5,
-            ease: "power2.out",
-            delay: 0.3,
-          });
-        },
-        once: true,
-      });
+      const formTw = gsap.fromTo(
+        ".contact-form",
+        { autoAlpha: 0, x: 30 },
+        { autoAlpha: 1, x: 0, duration: 0.5, ease: "power2.out", paused: true }
+      );
+      onScroll(".contact-form", formTw);
     }, sectionRef);
 
     return () => ctx.revert();

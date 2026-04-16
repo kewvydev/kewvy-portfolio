@@ -141,7 +141,7 @@ export default function Home() {
               kewvy.dev
             </span>
             <p className="text-[11px] font-bold uppercase tracking-widest text-background/50">
-              &copy; {new Date().getFullYear()} Kevin Gonzalez &mdash; Built with Next.js & Tailwind CSS
+              &copy; {new Date().getFullYear()} Built with ❤️ by Kevin Gonzalez
             </p>
           </div>
         </div>
