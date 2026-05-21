@@ -118,12 +118,11 @@ export default function AboutMe() {
             <span className="text-yellow-400">.</span>
           </h2>
           <p className="text-sm md:text-base leading-relaxed max-w-lg text-muted-foreground">
-            Hi! I&apos;m Kevin, a Software Engineering student based in
-            Ensenada, Mexico. I enjoy building things that live on the web, from
-            interactive front-ends to robust back-end services. My curiosity
-            drives me to explore new technologies and solve problems that{" "}
+            Hi! I&apos;m Kevin, a Software Engineering student passionate about technology and software development.
+            I excel at communicating solutions clearly and effectively. Committed to continuous improvement,
+            I seek to merge my solid technical background with the dedication to provide {" "}
             <span className="bg-yellow-300 px-1.5 font-bold border border-foreground text-foreground">
-              actually matter
+              exceptional results
             </span>
             .
           </p>
