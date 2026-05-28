@@ -24,7 +24,7 @@ export const experiences = [
   {
     company: "CleanMindset Cleaning Services",
     role: "Full Stack Developer",
-    location: "Alexandria, Virginia, United States",
+    location: "Alexandria, Virginia, United States (Remote)",
     period: "Aug 2025 – Dec 2025",
     bullets: [
       "Led the full SDLC from stakeholder interviews and requirements gathering to delivery, of a full-stack booking platform that replaced a phone-only process with a self-service web app featuring dynamic pricing estimation (square footage, cleaning type, frequency discounts, extras), real-time availability, and automated workflow management.",
@@ -46,9 +46,9 @@ export const experiences = [
 
 export const projects = [
   {
-    title: "CleanMindset Web Application",
+    title: "CleanMindset",
     description:
-      "CleanMindset description...",
+      "End-to-end platform for booking residential and commercial cleaning. Features instant quoting, payments, gift cards, and an admin dashboard with team management and marketing automation.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Stripe", "NodeMailer"],
     demo: "https://cleanmindsetcs.com",
     code: "#",
@@ -57,7 +57,7 @@ export const projects = [
   {
     title: "Tastify",
     description:
-      "Tastify description...",
+      "Learn world cuisines by playing. Interactive lessons, challenges, and global leaderboards to discover culinary cultures the fun way.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Clerk Auth", "Cloudinary"],
     demo: "https://tastify-rosy.vercel.app/",
     code: "https://github.com/kewvydev/Tastify",
@@ -66,7 +66,7 @@ export const projects = [
   {
     title: "PcBuilder+",
     description:
-      "PcBuilder+ description...",
+      "Build your own PC and search for compatible parts with confidence. A user-friendly interface for creating and sharing custom PC builds.",
     tags: ["Java 17", "Spring Boot 3", "Spring Data JPA", "Maven", "PostgreSQL"],
     demo: "#",
     code: "https://github.com/kewvydev/pc-builder-backend",
@@ -93,11 +93,11 @@ export const skillCategories = [
   },
   {
     name: "Cloud / Infrastructure",
-    skills: ["Google Cloud", "Azure", "Docker", "Git/GitHub", "Ubuntu Server", "Windows Server"],
+    skills: ["Google Cloud", "Azure", "AWS", "Docker", "Git/GitHub", "Ubuntu Server", "Windows Server"],
   },
   {
-    name: "Languages",
-    skills: ["Spanish (Native)", "English (Advanced / B2)"],
+    name: "Soft Skills",
+    skills: ["Learning Agility", "Adaptability", "Communication", "Teamwork", "Problem Solving", "Leadership", "Emotional Intelligence"],
   },
 ];
 
