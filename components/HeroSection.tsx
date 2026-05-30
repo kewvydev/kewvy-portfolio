@@ -135,7 +135,7 @@ export default function HeroSection() {
             Email
           </a>
           <a
-            href="/Resume_Kevin_Gonzalez.pdf"
+            href="/Kevin_Gonzalez_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className={`hero-cta ${BTN_BASE} bg-white text-foreground shadow-[4px_4px_0_var(--foreground)] hover:bg-yellow-300`}
