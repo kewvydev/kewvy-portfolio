@@ -140,7 +140,7 @@ export default function AboutMe() {
           </div>
 
           <div className="about-photo aspect-square border-2 border-foreground bg-white shadow-[4px_4px_0_var(--foreground)] overflow-hidden relative">
-            <Image src="/me.jpeg" alt="Kevin" fill className="object-cover" />
+            <Image src="/me.png" alt="Kevin" fill className="object-cover" />
           </div>
         </div>
 
