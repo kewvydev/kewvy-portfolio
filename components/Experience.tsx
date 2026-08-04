@@ -105,17 +105,14 @@ export default function Experience() {
       <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
         <div className="exp-header flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div>
-            <p className="exp-label text-[10px] uppercase tracking-[0.25em] font-bold text-muted-foreground mb-3">
-              Career Journey
+            <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
+              Career Journey // 01
             </p>
             <h2 className="exp-heading text-5xl md:text-6xl font-black font-heading leading-[0.9] tracking-tight text-stroke-heading text-white">
               EXPERIENCE
               <span className="text-yellow-400">_PATH</span>
             </h2>
           </div>
-          <p className="exp-badge text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground border-2 border-foreground px-3 py-1.5 bg-white shadow-[2px_2px_0_var(--foreground)]">
-            {experiences.length} Positions
-          </p>
         </div>
 
         <div className="relative">
@@ -184,11 +181,11 @@ export default function Experience() {
         </div>
 
         <div className="exp-footer mt-12 border-t-2 border-foreground/20 pt-4 flex items-center justify-between">
-          <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground">
-            entries: {experiences.length}
+          <p>
+            
           </p>
           <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground">
-            chronological order
+            my {new Date().getFullYear()} experience_PATH!
           </p>
         </div>
       </div>

@@ -103,8 +103,7 @@ export default function HeroSection() {
           className="mt-8 inline-block max-w-xl border-2 border-foreground bg-yellow-300 px-6 py-4 shadow-[4px_4px_0_var(--foreground)]"
         >
           <p className="text-sm md:text-base leading-relaxed font-medium text-foreground">
-            Software Engineering Student from Baja California, Mexico. Passionate
-            about emerging technologies and software development.
+            I am a passionate Full Stack Developer with a strong focus on building scalable and efficient web applications.
           </p>
         </div>
 
@@ -157,7 +156,7 @@ export default function HeroSection() {
                 key={i}
                 className="mx-4 text-xs font-black uppercase tracking-widest text-foreground"
               >
-                /// {item}
+                {"/// "}{item}
               </span>
             )
           )}

@@ -3,6 +3,7 @@ import Contact from "@/components/Contact";
 import Experience from "@/components/Experience";
 import HeroBackground from "@/components/HeroBackground";
 import HeroSection from "@/components/HeroSection";
+import Highlights from "@/components/Highlights";
 import Skills from "@/components/Skills";
 import Navbar from "@/components/Navbar";
 import Projects from "@/components/Projects";
@@ -15,7 +16,7 @@ export const experiences = [
     company: "Universidad Autónoma de Baja California",
     role: "Software Engineering Intern",
     location: "Ensenada, Baja California, Mexico",
-    period: "Feb 2026 – Present",
+    period: "Feb 2026 – July 2026",
     bullets: [
       "Supported the development of internal university systems. Maintained and optimized backend modules using Java with Spring Boot. Collaborated within a multidisciplinary team, applying best programming practices.",
       "Collaborated with cross-functional teams to deliver features on time using Agile methodologies and Scrum ceremonies.",
@@ -44,35 +45,113 @@ export const experiences = [
   },
 ];
 
-export const projects = [
+export const featuredProjects = [
   {
     title: "CleanMindset",
+    role: "Full Stack Developer",
     description:
       "End-to-end platform for booking residential and commercial cleaning. Features instant quoting, payments, gift cards, and an admin dashboard with team management and marketing automation.",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Stripe", "NodeMailer"],
+    contributions: [
+      "Led the full SDLC from stakeholder interviews and requirements gathering to delivery of a self-service booking platform.",
+      "Implemented dynamic pricing estimation, real-time availability, automated workflow management and JWT-based auth with rate limiting.",
+      "Reduced manual scheduling by ~25 hrs/week through an admin dashboard with bulk actions and CRUD operations for appointments, blog posts, coupons, and gift cards.",
+    ],
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Stripe", "NodeMailer"],
     demo: "https://cleanmindsetcs.com",
     code: "#",
-    image: "/projects/cleanmindset.png",
+    images: ["/projects/cleanmindset.jpeg", "/projects/cleanmindset2.jpeg", "/projects/cleanmindset3.jpeg", "/projects/cleanmindset4.jpeg", "/projects/cleanmindset5.jpeg"],
+    thumbnail: "/projects/cleanmindset.png",
   },
   {
     title: "Tastify",
+    role: "Personal Project",
     description:
       "Learn world cuisines by playing. Interactive lessons, challenges, and global leaderboards to discover culinary cultures the fun way.",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Clerk Auth", "Cloudinary"],
+    contributions: [
+      "Designed and built the full-stack architecture from scratch using Next.js and React Server Components.",
+      "Implemented gamified learning flows, progress tracking, and a leaderboard system.",
+      "Integrated Clerk authentication and Cloudinary media handling for user-generated content.",
+    ],
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Clerk Auth", "Cloudinary"],
     demo: "https://tastify-rosy.vercel.app/",
-    code: "https://github.com/kewvydev/Tastify",
-     image: "/projects/tastify.png",
+    code: "#",
+    images: ["/projects/tastify.jpeg", "/projects/tastify2.jpeg", "/projects/tastify3.jpeg", "/projects/tastify4.jpeg", "/projects/tastify5.jpeg"],
+    thumbnail: "/projects/tastify.png",
   },
   {
     title: "PcBuilder+",
+    role: "Backend Developer",
     description:
       "Build your own PC and search for compatible parts with confidence. A user-friendly interface for creating and sharing custom PC builds.",
-    tags: ["Java 17", "Spring Boot 3", "Spring Data JPA", "Maven", "PostgreSQL"],
+    contributions: [
+      "Designed the RESTful API and domain model for PC components, builds, and compatibility rules.",
+      "Implemented persistence and relationships using Spring Data JPA with PostgreSQL.",
+      "Built search and filtering endpoints for components and build configurations.",
+    ],
+    technologies: ["Java 17", "Spring Boot 3", "Spring Data JPA", "Maven", "PostgreSQL"],
     demo: "#",
     code: "https://github.com/kewvydev/pc-builder-backend",
-    image: "/projects/pcbuilder.jpeg",
+    images: ["/projects/pcbuilder.jpeg"],
+    thumbnail: "/projects/pcbuilder.jpeg",
   },
 ];
+
+export const otherProjects = [
+  {
+    title: "CodeFront ",
+    description:
+      "A Tech News Website that aggregates the latest news and articles from various sources, providing a one-stop platform for tech enthusiasts to stay updated.",
+    tags: ["Spring Boot", "React", "Tailwind CSS", "REST APIs"],
+    demo: "#",
+    code: "https://github.com/kewvydev/CodeFront",
+  },
+  {
+    title: "Gestión PIMEVA",
+    description:
+      "Preliminar version of a management system for the ships pier operations in Ensenada, including inventory, scheduling, and reporting.",
+    tags: ["ASP.NET", "C#", "CSS", "JavaScript", "PostgreSQL"],
+    demo: "#",
+    code: "#",
+  },
+  {
+    title: "SGHU (Sistema de Gestión para Horas Universitarias)",
+    description:
+      "An internal platform for managing extracurricular activities on the UABC FIAD campus. It replaces the ambiguous, semi-manual process previously used to manage these activities.",
+    tags: ["ASP.NET", "C#", "CSS", "JavaScript", "MSSQL Server"],
+    demo: "#",
+    code: "#",
+  },
+  {
+    title: "MiawChess",
+    description:
+      "Cute chess game with a cat theme. Play against the computer or a friend, and enjoy the adorable designs and sound effects.",
+    tags: ["C++", "Raylib", "SFML"],
+    demo: "#",
+    code: "https://github.com/andreagori/MiawChess",
+  },
+];
+
+export const highlights = [
+  {
+    title: "NASA Space Apps Challenge 2025",
+    description: "Built under pressure, collaborated with a team, and turned a rough idea into a working technical proposal.",
+    type: "Hackathon",
+  },
+  {
+    title: "ICPC Mexico Regional Round 2025",
+    description: "Practiced algorithmic thinking through timed challenges focused on logic, optimization, and clean solutions.",
+    type: "Competition",
+  },
+  {
+    title: "Elegis 3 Hackaton",
+    description: "Developed a web application for a real-world problem, demonstrating teamwork, creativity, and technical skills.",
+    type: "Hackaton",
+  },
+];
+
+export const featuredResearch = {
+  articleUrl: "/highlights/immediate-interaction-systems.pdf",
+};
 
 export const skillCategories = [
   {
@@ -112,15 +191,21 @@ export default function Home() {
       <div className="relative z-10">
         <Experience />
       </div>
-
+      
+      {/* THIS GETTING REMOVED FOR NOW, NEED TO BE REDISIGNED
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 md:py-28">
-        {/* TECHNICAL SKILLS */}
         <Skills categories={skillCategories} />
       </div>
+      */}
 
       {/* PROJECTS — full width */}
       <div className="relative z-10">
         <Projects />
+      </div>
+
+      {/* HIGHLIGHTS */}
+      <div className="relative z-10">
+        <Highlights />
       </div>
 
       {/* ABOUT ME */}

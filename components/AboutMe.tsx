@@ -146,8 +146,7 @@ export default function AboutMe() {
 
         <div className="about-quote border-2 border-foreground bg-foreground text-background p-6 shadow-[4px_4px_0_#facc15] flex items-center">
           <p className="text-base md:text-lg font-black font-heading leading-snug">
-            &ldquo;I don&apos;t just write code, I build experiences that refuse
-            to be boring.&rdquo;
+            &quot;The best way to predict the future is to invent it.&quot;
           </p>
         </div>
 

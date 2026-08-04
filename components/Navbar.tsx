@@ -6,8 +6,8 @@ import { gsap, prefersReducedMotion } from "@/lib/gsap";
 
 const navItems = [
   { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
+  { label: "Highlights", href: "#highlights" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
