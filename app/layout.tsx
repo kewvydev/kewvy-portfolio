@@ -1,23 +1,34 @@
 import type { Metadata } from "next";
-import { Epilogue, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const headingFont = Epilogue({
+const headingFont = localFont({
+  src: "./fonts/Anton-Regular.ttf",
+  weight: "400",
   variable: "--font-heading",
-  subsets: ["latin"],
   display: "swap",
 });
 
-const bodyFont = JetBrains_Mono({
+const bodyFont = localFont({
+  src: "./fonts/DM-Sans-Variable.ttf",
+  weight: "100 1000",
   variable: "--font-body",
-  subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Kevin Gonzalez",
-  description: "Full Stack Developer and Software Engineering Student from Baja California, Mexico. Passionate about emerging technologies and software development.",
-  keywords: ["Kevin Gonzalez", "Full Stack Developer", "Software Engineering Student", "Baja California", "Mexico", "Emerging Technologies", "Software Development"],
+  description:
+    "Full Stack Developer and Software Engineering student in Baja California, Mexico. Projects, experience, and contact.",
+  keywords: [
+    "Kevin Gonzalez",
+    "Full Stack Developer",
+    "Software Engineering Student",
+    "Baja California",
+    "Mexico",
+    "Emerging Technologies",
+    "Software Development",
+  ],
   authors: [{ name: "Kevin Gonzalez", url: "https://kewvy.dev" }],
   creator: "Kevin Gonzalez",
   icons: {
@@ -27,7 +38,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Kevin Gonzalez",
-    description: "Full Stack Developer and Software Engineering Student from Baja California, Mexico. Passionate about emerging technologies and software development.",
+    description:
+      "Full Stack Developer and Software Engineering student in Baja California, Mexico. Projects, experience, and contact.",
   },
 };
 

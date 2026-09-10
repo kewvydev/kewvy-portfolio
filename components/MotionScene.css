@@ -1,0 +1,445 @@
+/* Motion stays on separate layers so focus, gallery controls and forms never drift. */
+.title-mask,
+.hero-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+.title-line,
+.hero-line {
+  display: block;
+  transform-origin: left bottom;
+}
+.motion-scene {
+  overflow-x: clip;
+}
+.reading-progress {
+  position: absolute;
+  inset: auto 0 -2px;
+  height: 4px;
+  background: var(--violet);
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 2;
+  pointer-events: none;
+}
+.site-header a[aria-current="location"] {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 7px;
+}
+.site-header .wordmark[aria-current] {
+  text-decoration: none;
+}
+.project-shutter {
+  position: absolute;
+  inset: 0;
+  background: var(--lilac);
+  transform-origin: right;
+  transform: scaleX(0);
+  opacity: 0;
+  pointer-events: none;
+  border-left: 3px solid var(--ink);
+}
+.project-1 .project-shutter {
+  background: var(--peach);
+  transform-origin: left;
+  border-left: 0;
+  border-right: 3px solid var(--ink);
+}
+.project-2 .project-shutter {
+  background: var(--pistachio);
+}
+.experience-list {
+  position: relative;
+  padding-left: 28px;
+}
+.experience-track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  background: var(--lilac);
+}
+.experience-track span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--ink);
+}
+.experience-entry {
+  position: relative;
+}
+.experience-entry::before {
+  content: "";
+  position: absolute;
+  left: -33px;
+  top: 35px;
+  width: 13px;
+  height: 13px;
+  border: 3px solid var(--ink);
+  background: var(--pistachio);
+  border-radius: 50%;
+}
+@media (min-width: 861px) and (prefers-reduced-motion: no-preference) {
+  .skills-title {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+  }
+}
+
+/* An actual modal gives keyboard, pointer and assistive technology the same boundary. */
+.intro {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--paper);
+  background: transparent;
+  overflow: hidden;
+}
+.intro:not([open]) {
+  display: none;
+}
+.intro::backdrop {
+  background: transparent;
+}
+.intro-panels {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  pointer-events: none;
+}
+.intro-panel {
+  background: var(--ink);
+  border-right: 1px solid #cbb3e538;
+}
+.intro-panel:nth-child(2) {
+  background-color: #3f2b4c;
+}
+.intro-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 30px 5vw;
+}
+.intro-top,
+.intro-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 13px;
+}
+.intro-top button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  background: transparent;
+  color: var(--paper);
+  border: 1px solid var(--lilac);
+  padding: 8px 15px;
+}
+.intro-top button:hover {
+  background: var(--lilac);
+  color: var(--ink);
+}
+.intro-top button:focus-visible {
+  outline-color: var(--pistachio);
+}
+.intro-identity {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4vw;
+  padding: 30px 0;
+}
+.intro-name {
+  font-family: var(--font-heading), Impact, sans-serif;
+  font-size: clamp(64px, 15.7vw, 240px);
+  letter-spacing: -0.03em;
+  line-height: 0.96;
+}
+.intro-name > div {
+  overflow: hidden;
+  padding-bottom: 0.03em;
+}
+.intro-name span {
+  display: block;
+}
+.intro-seal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 19vw;
+  height: 19vw;
+  max-width: 245px;
+  max-height: 245px;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  background: var(--pistachio);
+  color: var(--ink);
+  text-align: center;
+  font-size: clamp(12px, 1.6vw, 22px);
+  font-weight: 800;
+  line-height: 1.2;
+  transform: rotate(12deg);
+}
+.intro-seal svg {
+  width: 7vw;
+  height: 7vw;
+  stroke-width: 1.3;
+}
+.intro-bottom {
+  margin-top: auto;
+}
+.intro-count {
+  font-family: var(--font-heading), Impact, sans-serif;
+  font-size: 50px;
+  color: var(--pistachio);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.intro-meter {
+  height: 5px;
+  background: #cbb3e540;
+  margin-top: 15px;
+}
+.intro-meter span {
+  display: block;
+  height: 100%;
+  background: var(--pistachio);
+  transform-origin: left;
+}
+
+/* Tactile responses also apply to keyboard focus; touch gets immediate pressed states. */
+.button svg,
+.text-link svg,
+.nav-contact svg,
+.footer-links svg,
+.contact-email svg {
+  transition: transform 0.2s ease;
+}
+.button:is(:hover, :focus-visible) svg,
+.text-link:is(:hover, :focus-visible) svg,
+.nav-contact:is(:hover, :focus-visible) svg,
+.footer-links a:is(:hover, :focus-visible) svg,
+.contact-email:is(:hover, :focus-visible) svg {
+  transform: translate(3px, -3px);
+}
+.button:focus-visible {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--violet);
+}
+.button:active svg,
+.text-link:active svg {
+  transform: translate(1px, -1px) scale(0.88);
+}
+.text-link:active,
+.footer-links a:active {
+  opacity: 0.65;
+}
+.tags li {
+  transition:
+    transform 0.18s,
+    background-color 0.18s;
+}
+@media (hover: hover) {
+  .tags li:hover {
+    transform: translateY(-3px) rotate(-2deg);
+    background: var(--paper);
+  }
+  .highlights-list article {
+    transition: background-color 0.2s;
+  }
+  .highlights-list article:hover {
+    background: #cbb3e530;
+  }
+}
+summary svg {
+  transition: transform 0.2s;
+}
+summary:active {
+  transform: translateY(2px);
+}
+.skill-row li {
+  transition: color 0.18s;
+}
+.skill-row li:hover {
+  color: var(--violet);
+}
+.gallery-controls button svg {
+  transition: transform 0.18s;
+}
+.gallery-controls button:is(:hover, :focus-visible) svg {
+  transform: translateX(3px);
+}
+.gallery-controls button:first-child:is(:hover, :focus-visible) svg {
+  transform: translateX(-3px);
+}
+.gallery-controls button:active svg {
+  transform: scale(0.8);
+}
+.contact-form:focus-within {
+  box-shadow: 9px 9px 0 var(--pistachio);
+}
+.contact-form[aria-busy="true"] .send-button svg {
+  animation: send-flight 0.9s ease-in-out infinite alternate;
+}
+.form-status.status-sent {
+  animation: message-stamp 0.3s ease-out;
+}
+.copy-email {
+  margin-top: 18px;
+}
+.copy-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  border: 1px solid var(--lilac);
+  padding: 8px 13px;
+  background: transparent;
+  color: var(--paper);
+  font-size: 12px;
+  transition:
+    background-color 0.18s,
+    transform 0.18s;
+}
+.copy-button:hover,
+.copy-button[data-copied="true"] {
+  background: var(--pistachio);
+  color: var(--ink);
+}
+.copy-button:active {
+  transform: translate(2px, 2px);
+}
+.copy-status {
+  display: block;
+  min-height: 20px;
+  font-size: 12px;
+  color: var(--pistachio);
+  margin-top: 6px;
+}
+.link-feedback {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 70;
+  padding: 13px 20px;
+  background: var(--pistachio);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(15px);
+  transition:
+    opacity 0.18s,
+    transform 0.18s;
+}
+.link-feedback[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+@keyframes send-flight {
+  to {
+    transform: translate(4px, -4px);
+  }
+}
+@keyframes message-stamp {
+  from {
+    transform: translateY(5px);
+    opacity: 0;
+  }
+}
+@media (max-width: 600px) {
+  .intro-content {
+    padding: 20px 5vw;
+  }
+  .intro-top {
+    font-size: 11px;
+  }
+  .intro-top button {
+    font-size: 11px;
+    gap: 6px;
+    padding-inline: 10px;
+  }
+  .intro-identity {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-block: auto;
+    gap: 25px;
+  }
+  .intro-name {
+    font-size: 20vw;
+  }
+  .intro-seal {
+    width: 110px;
+    height: 110px;
+    align-self: flex-end;
+  }
+  .intro-seal svg {
+    width: 36px;
+    height: 36px;
+  }
+  .intro-bottom {
+    font-size: 11px;
+  }
+  .intro-count {
+    font-size: 36px;
+  }
+  .link-feedback {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    text-align: center;
+  }
+  .experience-list {
+    padding-left: 20px;
+  }
+  .experience-entry::before {
+    left: -25px;
+    top: 30px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-seal {
+    transform: none;
+  }
+  .intro-count,
+  .intro-meter {
+    display: none;
+  }
+  .intro-panel {
+    background: var(--ink);
+  }
+  .reading-progress {
+    display: none;
+  }
+  .button:is(:hover, :focus-visible),
+  .button svg,
+  .text-link svg,
+  .nav-contact svg,
+  .footer-links svg,
+  .contact-email svg,
+  .tags li:hover {
+    transform: none;
+  }
+}

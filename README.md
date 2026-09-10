@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kevin Gonzalez — Portfolio
 
-## Getting Started
+A Next.js 16 portfolio built with the App Router, strict TypeScript, Tailwind CSS, GSAP, and Lucide.
 
-First, run the development server:
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install --frozen-lockfile
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Before shipping:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm lint
+pnpm build
+pnpm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Content and design
 
-## Learn More
+- `lib/portfolio.ts` contains project, experience, skill, and highlight data. Descriptions are edited for brevity; the original roles, dates, technologies, links, and scheduling metric are preserved.
+- `app/page.tsx` composes the page sections in `components/`.
+- `app/globals.css` defines the plum, lilac, pistachio, and peach palette, editorial layouts, tactile interactions, and responsive rules.
+- Anton display and variable DM Sans are served through `next/font/local`. Font files and their SIL Open Font Licenses live in `app/fonts/`; builds do not fetch Google Fonts.
+- The portrait, project screenshots, research paper, and CV remain in `public/`. Screenshots use `next/image`; each featured project has an accessible gallery and expandable contribution details.
+- `components/Intro.tsx` opens a native modal on every page entry/reload. Three panels reveal the hero after a typographic sequence (~2 seconds). Escape or Skip intro dismisses it; a 2.8-second fallback releases interaction. Reduced motion uses a 0.4-second fade, including on deep links.
+- `components/MotionScene.tsx` scopes GSAP and ScrollTrigger to the page and reverts them on unmount or media-query changes. The hero uses layered parallax; project images have shutters and staggered metadata; about uses a horizontal title reveal; experience draws a timeline; toolkit rows assemble beside a sticky desktop heading; research lands as a printed sheet; contact settles into place before interaction.
+- `components/MotionScene.css` contains motion layers and tactile states. Smaller screens use shorter travel and no sticky toolkit heading. No scroll hijacking or pinned scrolling is used. Keyboard focus completes the relevant entrance immediately. Layout changes refresh ScrollTrigger through a cleaned-up ResizeObserver.
+- Copy email, CV download, external links, gallery navigation, and form submission have visible feedback. Reduced motion disables scroll effects and CSS animation; it also takes precedence over ScrollTrigger’s inline smooth-scroll style when the preference changes at runtime. Core content remains visible without JavaScript.
 
-To learn more about Next.js, take a look at the following resources:
+## Contact
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Set `RESEND_API_KEY` in an uncommitted `.env.local` to enable email delivery through `/api/contact`. The existing sender and recipient are preserved. The client displays sending, success, timeout, and error states while retaining the message after a failed request.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Resend is initialized only when sending a valid submission, so production builds do not require a secret. Without the key, the endpoint returns a service-unavailable response and the page offers a direct email link.
 
-## Deploy on Vercel
+## Redesign validation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The redesign was checked in production with Chromium at 320, 390, 600, 768, 860, 861, 1024, and 1440 px. Checks covered repeated modal intros, Skip and Escape, direct hash entry, scroll-driven hero motion, section titles, horizontal overflow, keyboard navigation, galleries and disclosures, clipboard copying, CV download feedback, form success/error states using intercepted responses, live reduced-motion changes, content without JavaScript, and required-field API validation. Axe reported no WCAG A/AA violations on the desktop and mobile pages checked. Real email delivery requires the configured Resend key and was not exercised.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+No application dependencies were added. Browser and accessibility tooling was used temporarily outside the project.
