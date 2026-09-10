@@ -1,12 +1,20 @@
 import EditorialTitle from "@/components/EditorialTitle";
+import Image from "next/image";
 import { skillCategories } from "@/lib/portfolio";
-import { Braces } from "lucide-react";
 
 export default function Skills() {
   return (
     <section id="skills" className="skills section-space paper-grid">
       <div className="skills-title">
-        <Braces size={52} strokeWidth={1.5} aria-hidden="true" />
+        <div className="toolkit-art" aria-hidden="true">
+          <Image
+            src="/art/toolkit-braces.png"
+            alt=""
+            width={1254}
+            height={1254}
+            sizes="(max-width: 600px) 135px, (max-width: 860px) 28vw, 270px"
+          />
+        </div>
         <EditorialTitle lines={["Technical", "toolkit."]} />
         <p>
           Languages, platforms, infrastructure, testing, and agentic tools.

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowDown, ArrowUpRight, Asterisk, MapPin } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Asterisk } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -39,8 +39,8 @@ export default function HeroSection() {
           <figure className="portrait-print">
             <div className="portrait-image">
               <Image
-                src="/me.png"
-                alt="Kevin Gonzalez, Full Stack Developer"
+                src="/art/kevin-portrait-editorial.png"
+                alt="Editorial portrait of Kevin Gonzalez"
                 fill
                 sizes="(max-width: 600px) 75vw, (max-width: 960px) 40vw, 34vw"
                 priority

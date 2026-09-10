@@ -81,6 +81,11 @@ export default function MotionScene({ children }: { children: ReactNode }) {
               0.1,
             )
             .from(
+              ".portrait-image img",
+              { scale: 1.12, duration: 1, clearProps: "transform" },
+              0.12,
+            )
+            .from(
               ".hero-bottom",
               { opacity: 0, y: 18, duration: 0.5, clearProps: "all" },
               0.3,
@@ -113,6 +118,11 @@ export default function MotionScene({ children }: { children: ReactNode }) {
                 0,
               )
               .to(".portrait-outline", { rotation: 3, ease: "none" }, 0)
+              .to(
+                ".portrait-image img",
+                { yPercent: 4, scale: 1.06, ease: "none" },
+                0,
+              )
               .to(".hero-star", { rotation: 100, ease: "none" }, 0);
           } else {
             gsap.to(".portrait-outline", {
@@ -205,6 +215,10 @@ export default function MotionScene({ children }: { children: ReactNode }) {
           entrance(select("#experience .section-heading")[0]).from(
             "#experience .title-line",
             { yPercent: -105, stagger: 0.09 },
+          ).from(
+            ".experience-marker",
+            { scale: 0.45, rotation: -35, opacity: 0, clearProps: "all" },
+            0.08,
           );
           gsap.from(".experience-track span", {
             scaleY: 0,
@@ -233,12 +247,24 @@ export default function MotionScene({ children }: { children: ReactNode }) {
           });
 
           // The toolkit assembles horizontally while its heading stays alongside it.
-          entrance(select(".skills-title")[0]).from("#skills .title-line", {
-            yPercent: 105,
-            rotation: 3,
-            transformOrigin: "left bottom",
-            stagger: 0.1,
-          });
+          entrance(select(".skills-title")[0])
+            .from("#skills .title-line", {
+              yPercent: 105,
+              rotation: 3,
+              transformOrigin: "left bottom",
+              stagger: 0.1,
+            })
+            .from(
+              ".toolkit-art",
+              {
+                scale: 0.55,
+                rotation: -9,
+                opacity: 0,
+                duration: 0.8,
+                clearProps: "all",
+              },
+              0.06,
+            );
           select(".skill-row").forEach((row: HTMLElement, index: number) => {
             entrance(row, "top 92%").from(row.querySelectorAll("li"), {
               x: index % 2 ? 20 : -20,
@@ -248,12 +274,30 @@ export default function MotionScene({ children }: { children: ReactNode }) {
               clearProps: "all",
             });
           });
+          if (desktop)
+            gsap.to(".toolkit-art img", {
+              y: -24,
+              rotation: 5,
+              ease: "none",
+              scrollTrigger: {
+                trigger: "#skills",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.55,
+              },
+            });
 
           // A research sheet lands; competition notes are stamped beneath it.
-          entrance(select("#highlights .section-heading")[0]).from(
-            "#highlights .title-line",
-            { xPercent: 105, stagger: 0.09 },
-          );
+          entrance(select("#highlights .section-heading")[0])
+            .from("#highlights .title-line", {
+              xPercent: 105,
+              stagger: 0.09,
+            })
+            .from(
+              ".research-network",
+              { scale: 0.4, rotation: -28, opacity: 0, clearProps: "all" },
+              0.12,
+            );
           entrance(select(".research")[0])
             .from(".research-cover", {
               rotation: -10,
@@ -272,6 +316,17 @@ export default function MotionScene({ children }: { children: ReactNode }) {
                 clearProps: "all",
               },
               0.5,
+            )
+            .from(
+              ".research-clip",
+              {
+                y: -35,
+                rotation: -25,
+                opacity: 0,
+                duration: 0.45,
+                clearProps: "all",
+              },
+              0.46,
             )
             .from(
               ".research-content",
@@ -293,6 +348,18 @@ export default function MotionScene({ children }: { children: ReactNode }) {
           entrance(select("#contact")[0])
             .from("#contact .title-line", { yPercent: 105, stagger: 0.1 })
             .from(
+              ".contact-signal",
+              {
+                x: -28,
+                y: 30,
+                rotation: -7,
+                opacity: 0,
+                duration: 0.8,
+                clearProps: "all",
+              },
+              0.1,
+            )
+            .from(
               ".contact-form",
               {
                 y: 35,
@@ -309,6 +376,11 @@ export default function MotionScene({ children }: { children: ReactNode }) {
               opacity: 0,
               clearProps: "all",
             })
+            .from(
+              ".footer-kmark",
+              { rotation: -16, scale: 0.65, clearProps: "all" },
+              0,
+            )
             .from(
               ".footer-links a",
               { y: 10, opacity: 0, stagger: 0.06, clearProps: "all" },

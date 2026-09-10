@@ -1,7 +1,7 @@
 "use client";
 
+import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
-import { Asterisk, ArrowUpRight } from "lucide-react";
 import { gsap } from "@/lib/gsap";
 
 export default function Intro() {
@@ -53,17 +53,19 @@ export default function Intro() {
       const counter = { value: 0 };
       timeline = gsap.timeline({ onComplete: finish });
       timeline
+        .from(".intro-monogram", {
+          scale: 0.46,
+          rotation: -14,
+          opacity: 0,
+          duration: 0.72,
+          ease: "back.out(1.35)",
+        })
         .from(".intro-name span", {
           yPercent: 110,
           stagger: 0.07,
           duration: 0.55,
           ease: "power4.out",
-        })
-        .from(
-          ".intro-seal",
-          { scale: 0.3, rotation: -100, duration: 0.6, ease: "back.out(1.5)" },
-          0.1,
-        )
+        }, 0.12)
         .to(
           counter,
           {
@@ -88,7 +90,22 @@ export default function Intro() {
           0,
         )
         .call(reveal, [], 1.05)
-        .to(".intro-content", { y: -24, opacity: 0, duration: 0.25 }, 1.05)
+        .to(
+          ".intro-name, .intro-bottom, .intro-meter",
+          { y: -22, opacity: 0, duration: 0.25, stagger: 0.025 },
+          1.05,
+        )
+        .to(
+          ".intro-monogram",
+          {
+            scale: 2.65,
+            rotation: 7,
+            opacity: 0,
+            duration: 0.62,
+            ease: "power4.in",
+          },
+          1.02,
+        )
         .to(
           ".intro-panel",
           {
@@ -97,7 +114,7 @@ export default function Intro() {
             stagger: 0.08,
             ease: "power4.inOut",
           },
-          1.15,
+          1.28,
         );
     }, dialog);
     reduced.addEventListener("change", finish);
@@ -115,7 +132,7 @@ export default function Intro() {
     <dialog
       ref={ref}
       className="intro"
-      aria-labelledby="intro-label"
+      aria-label="Loading Kevin Gonzalez portfolio"
       onCancel={(event) => {
         event.preventDefault();
         finishRef.current();
@@ -126,8 +143,18 @@ export default function Intro() {
         <div className="intro-panel" />
         <div className="intro-panel" />
       </div>
-      <div className="intro-content">E
+      <div className="intro-content">
         <div className="intro-identity" aria-hidden="true">
+          <div className="intro-monogram">
+            <Image
+              src="/favicon.png"
+              alt=""
+              width={1254}
+              height={1254}
+              sizes="(max-width: 600px) 56vw, 34vw"
+              priority
+            />
+          </div>
           <div className="intro-name">
             <div>
               <span>KEVIN</span>

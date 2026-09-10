@@ -1,12 +1,21 @@
 import EditorialTitle from "@/components/EditorialTitle";
-import { ArrowUpRight, Download, Asterisk } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight, Download } from "lucide-react";
 
 export default function AboutMe() {
   return (
     <section id="about" className="about section-space">
       <div className="about-title">
         <EditorialTitle lines={["About", "Kevin."]} />
-        <Asterisk className="about-asterisk" aria-hidden="true" />
+        <div className="about-asterisk" aria-hidden="true">
+          <Image
+            src="/art/parts/asterisk.png"
+            alt=""
+            width={457}
+            height={480}
+            sizes="(max-width: 600px) 76px, 175px"
+          />
+        </div>
       </div>
       <div className="about-body">
         <p className="large-copy">

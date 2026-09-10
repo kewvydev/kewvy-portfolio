@@ -161,8 +161,15 @@ export default function Projects() {
       <div className="section-heading">
         <EditorialTitle lines={["Selected", "projects."]} />
         <div className="heading-note">
-          <span className="small-orbit" aria-hidden="true">
-            ↙
+          <span className="small-orbit projects-arrow" aria-hidden="true">
+            <Image
+              src="/art/parts/arrow.png"
+              alt=""
+              width={377}
+              height={391}
+              sizes="75px"
+              className="rotate-180"
+            />
           </span>
           <p>Web platforms and backend development.</p>
         </div>

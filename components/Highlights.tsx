@@ -8,7 +8,18 @@ export default function Highlights() {
     <section id="highlights" className="highlights section-space">
       <div className="section-heading">
         <EditorialTitle lines={["Research &", "competitions."]} />
-        <p>Human–computer interaction and team challenges.</p>
+        <div className="highlights-note">
+          <div className="research-network" aria-hidden="true">
+            <Image
+              src="/art/parts/network.png"
+              alt=""
+              width={404}
+              height={463}
+              sizes="(max-width: 600px) 82px, 120px"
+            />
+          </div>
+          <p>Human–computer interaction and team challenges.</p>
+        </div>
       </div>
       <article className="research">
         <div className="research-cover">
@@ -18,6 +29,15 @@ export default function Highlights() {
             fill
             sizes="(max-width: 760px) 90vw, 35vw"
           />
+          <span className="research-clip" aria-hidden="true">
+            <Image
+              src="/art/parts/binder-clip.png"
+              alt=""
+              width={383}
+              height={424}
+              sizes="(max-width: 600px) 78px, 120px"
+            />
+          </span>
           <span className="research-sticker">
             Field notes
             <br />

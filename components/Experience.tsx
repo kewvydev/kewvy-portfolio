@@ -1,4 +1,5 @@
 import EditorialTitle from "@/components/EditorialTitle";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { experiences } from "@/lib/portfolio";
 
@@ -7,6 +8,15 @@ export default function Experience() {
     <section id="experience" className="experience section-space">
       <div className="section-heading">
         <EditorialTitle lines={["Work", "experience."]} />
+        <div className="experience-marker" aria-hidden="true">
+          <Image
+            src="/art/parts/registration.png"
+            alt=""
+            width={389}
+            height={412}
+            sizes="(max-width: 600px) 72px, 112px"
+          />
+        </div>
       </div>
       <div className="experience-list">
         <div className="experience-track" aria-hidden="true">

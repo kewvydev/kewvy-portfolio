@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowUp, ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
@@ -5,7 +6,17 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-top">
         <a className="footer-logo" href="#home">
-          kewvy<span aria-hidden="true">✳</span>
+          <Image
+            className="footer-kmark"
+            src="/favicon.png"
+            alt=""
+            width={1254}
+            height={1254}
+            sizes="58px"
+          />
+          <span className="footer-wordmark">
+            kewvy<sup aria-hidden="true">✳</sup>
+          </span>
         </a>
         <p>
           Full Stack Developer

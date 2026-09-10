@@ -1,9 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { ArrowUpRight, Send } from "lucide-react";
 import EditorialTitle from "@/components/EditorialTitle";
-import CopyEmail from "@/components/CopyEmail";
 import { EMAIL } from "@/lib/portfolio";
 
 export default function Contact() {
@@ -42,14 +42,27 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="contact section-space">
+    <section
+      id="contact"
+      className="contact section-space"
+      data-status={status}
+    >
       <div className="contact-copy">
         <EditorialTitle lines={["LET’S", "TALK."]} />
         <p>Open to freelance and part-time opportunities.</p>
         <a className="contact-email" href={`mailto:${EMAIL}`}>
           {EMAIL} <ArrowUpRight size={22} />
         </a>
-        {/* <CopyEmail /> */}
+      </div>
+      <div className="contact-signal" aria-hidden="true">
+        <span className="contact-signal-plate" />
+        <Image
+          src="/art/contact-signal.png"
+          alt=""
+          width={1122}
+          height={1402}
+          sizes="(max-width: 760px) 78vw, (max-width: 1100px) 27vw, 310px"
+        />
       </div>
       <form
         className="contact-form"
