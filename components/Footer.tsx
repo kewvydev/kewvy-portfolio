@@ -18,11 +18,6 @@ export default function Footer() {
             kewvy<sup aria-hidden="true">✳</sup>
           </span>
         </a>
-        <p>
-          Full Stack Developer
-          <br />
-          Baja California, Mexico
-        </p>
         <div className="footer-links">
           <a
             href="https://github.com/kewvydev"

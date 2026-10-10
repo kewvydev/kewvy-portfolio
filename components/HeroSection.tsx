@@ -20,8 +20,8 @@ export default function HeroSection() {
             </span>
             <div>
               <p>
-                Building fast and scalable
-                <br className="desktop-break" /> web applications.
+                Building web platforms and
+                <br className="desktop-break" /> intelligent backend systems.
               </p>
               <div className="hero-actions">
                 <a href="#projects" className="button button-dark">
@@ -51,7 +51,7 @@ export default function HeroSection() {
               <span>This is me!</span>
             </figcaption>
           </figure>
-          <div className="availability">Full Stack Developer</div>
+          <div className="availability">Software Engineer · Fullstack Developer</div>
         </div>
       </div>
       <div className="hero-baseline">

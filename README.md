@@ -19,7 +19,7 @@ pnpm start
 
 ## Content and design
 
-- `lib/portfolio.ts` contains project, experience, skill, and highlight data. Descriptions are edited for brevity; the original roles, dates, technologies, links, and scheduling metric are preserved.
+- `lib/portfolio.ts` contains project, experience, skill, and highlight data. Keep experience, project details, and technical skills aligned with `public/Kevin_Gonzalez_Resume.pdf`.
 - `app/page.tsx` composes the page sections in `components/`.
 - `app/globals.css` defines the plum, lilac, pistachio, and peach palette, editorial layouts, tactile interactions, and responsive rules.
 - Anton display and variable DM Sans are served through `next/font/local`. Font files and their SIL Open Font Licenses live in `app/fonts/`; builds do not fetch Google Fonts.

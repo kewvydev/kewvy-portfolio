@@ -171,7 +171,7 @@ export default function Projects() {
               className="rotate-180"
             />
           </span>
-          <p>Web platforms and backend development.</p>
+          <p>Web platforms, backend systems, and cloud work.</p>
         </div>
       </div>
       <div className="featured-projects">

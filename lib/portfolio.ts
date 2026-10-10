@@ -2,37 +2,37 @@ export const EMAIL = "kewvydev@outlook.com";
 
 export const experiences = [
   {
-    company: "Universidad Autónoma de Baja California",
+    company: "UABC Systems Development Department",
+    role: "Software Engineering Intern II",
+    location: "Ensenada, Baja California, Mexico",
+    period: "Aug 2026 – Present",
+    bullets: [
+      "Co-designing a hybrid AWS and on-premises architecture to modernize incident management across 20+ university systems, integrating existing infrastructure with AI-driven investigation workflows.",
+      "Developing Spring Boot backend and REST API integrations to connect university services with AWS-based incident investigation pipelines.",
+      "Designing multi-agent orchestration workflows with AWS Step Functions and Amazon Bedrock AgentCore to coordinate 8 specialized agents across evidence collection, root-cause diagnosis, validation, and incident reproduction.",
+    ],
+  },
+  {
+    company: "UABC Systems Development Department",
     role: "Software Engineering Intern",
     location: "Ensenada, Baja California, Mexico",
-    period: "Feb 2026 – Present",
+    period: "Feb 2026 – Jul 2026",
     bullets: [
       "Maintained and optimized backend modules for internal university systems, boosting reliability and performance by 45%.",
       "Designed and built a new internal university system module using Java Spring Boot, delivering core functionality of enabling students to submit bug reports across 20+ university systems.",
-      "Led early-stage requirement analysis across stakeholder interviews, shaping the scope of 3 university system enhancements over 8 sprints."
+      "Led early-stage requirement analysis across stakeholder interviews, shaping the scope of 3 university system enhancements.",
     ],
   },
   {
     company: "CleanMindset Cleaning Services",
-    role: "Full Stack Developer",
+    role: "Fullstack Developer",
     location: "Alexandria, Virginia, United States (Remote)",
     period: "Aug 2025 – Jan 2026",
     bullets: [
       "Owned end-to-end SDLC for new features, translating stakeholder interviews into developed, tested, and validated releases, delivering 6-10 features per sprint.",
       "Architected a full-stack booking platform, replacing a phone-only booking process with a self-service app supporting dynamic pricing and real-time availability, driving 70% of new bookings through self-service within 2 months of launch.",
-      "Built an admin dashboard with bulk actions and status automation, reducing manual scheduling by ˜25 hrs/week.",
+      "Built an admin dashboard with bulk actions and status automation, reducing manual scheduling by ~25 hours per week.",
       "Implemented CI/CD pipelines with GitHub Actions to automate testing, reducing manual QA effort and catching issues earlier.",
-    ],
-  },
-  {
-    company: "ISyTE Core Labs",
-    role: "Infrastructure Leader",
-    location: "Ensenada, Baja California, Mexico",
-    period: "Sep 2025 – Dec 2025",
-    bullets: [
-      "Configured Windows Server 2022, firewall rules, and ports for lab services.",
-      "Managed SQL Server logins, roles, and auditing. Built stored procedures, reports, and audit logs for SGHU.",
-      "Introduced Git and GitHub workflows across lab projects.",
     ],
   },
 ];
@@ -40,13 +40,13 @@ export const experiences = [
 export const featuredProjects = [
   {
     title: "CleanMindset",
-    role: "Full Stack Developer",
+    role: "Fullstack Developer",
     description:
-      "Residential and commercial cleaning bookings with instant quotes, payments, and gift cards. Includes team management and marketing tools.",
+      "Self-service cleaning bookings with instant estimates, secure payments, appointment tracking, and customer reviews.",
     contributions: [
-      "Led stakeholder interviews, requirements, development, and delivery.",
-      "Built dynamic pricing, real-time availability, workflow automation, and JWT authentication with rate limiting.",
-      "Reduced manual scheduling by ~25 hours/week. Built bulk actions and management tools for appointments, blog posts, coupons, and gift cards.",
+      "Built a slot-based booking flow with an instant estimate wizard and secure in-page Stripe payments.",
+      "Developed token-based appointment tracking with expiration handling and Stripe integration.",
+      "Created a customer review system with appointment validation and content moderation.",
     ],
     technologies: [
       "Next.js",
@@ -54,7 +54,7 @@ export const featuredProjects = [
       "Tailwind CSS",
       "PostgreSQL",
       "Stripe",
-      "NodeMailer",
+      "Nodemailer",
     ],
     demo: "https://cleanmindsetcs.com",
     code: "#",
@@ -71,11 +71,11 @@ export const featuredProjects = [
     title: "Tastify",
     role: "Personal Project",
     description:
-      "World-cuisine learning app with interactive lessons, challenges, progress tracking, and global leaderboards.",
+      "Culinary learning app with lessons, gamified progress, leaderboards, and premium subscriptions.",
     contributions: [
-      "Built the full-stack architecture with Next.js and React Server Components.",
-      "Implemented lessons, progress tracking, and leaderboards.",
-      "Integrated Clerk authentication and Cloudinary for user-generated media.",
+      "Built a gamification system with points, streaks, leaderboards, and badges.",
+      "Integrated premium subscriptions with webhook-based state sync and a self-service billing portal.",
+      "Used Clerk for authentication and Cloudinary for media management.",
     ],
     technologies: [
       "Next.js",
@@ -84,6 +84,7 @@ export const featuredProjects = [
       "PostgreSQL",
       "Clerk Auth",
       "Cloudinary",
+      "GCP",
     ],
     demo: "https://tastify-rosy.vercel.app/",
     code: "#",
@@ -186,56 +187,34 @@ export const skillCategories = [
   },
   {
     name: "Frontend",
-    skills: [
-      "React",
-      "React Native",
-      "Next.js",
-      "Tailwind CSS",
-      "HTML",
-      "CSS",
-      "UI/UX",
-    ],
+    skills: ["React", "React Native", "Next.js", "Tailwind CSS"],
   },
   {
     name: "Backend",
-    skills: [
-      "REST APIs",
-      "Spring Boot",
-      "Next.js API Routes",
-      "Node.js",
-      "FastAPI",
-      "SQL",
-    ],
+    skills: ["REST APIs", "Spring Boot", "Node.js", "FastAPI", "SQL"],
   },
   {
-    name: "Database",
+    name: "Database & Cloud",
     skills: [
       "PostgreSQL",
-      "MSSQL Server",
-      "Drizzle",
+      "SQL Server",
       "Prisma",
-      "Supabase",
-      "Neon",
+      "Drizzle",
+      "AWS",
+      "GCP",
+      "AWS Step Functions",
     ],
   },
   {
-    name: "Cloud",
-    skills: ["AWS", "Azure", "Google Cloud Platform"],
-  },
-  {
-    name: "DevOps",
+    name: "DevOps & Testing",
     skills: [
+      "Git",
       "Docker",
-      "CI/CD",
-      "GitHub Actions",
-      "Bash Scripting",
-      "Git/GitHub",
-      "Ubuntu Server",
+      "GitHub Actions (CI/CD)",
+      "Postman",
+      "Playwright",
+      "Selenium",
     ],
-  },
-  {
-    name: "Testing & Tools",
-    skills: ["Postman", "Jira", "Trello", "Playwright", "Selenium"],
   },
   {
     name: "AI & Agents",
@@ -243,11 +222,11 @@ export const skillCategories = [
       "Agent Skills",
       "MCPs",
       "Spec-Driven Development",
+      "Amazon Bedrock AgentCore",
       "OpenCode",
       "Cursor",
       "Codex",
       "Claude Code",
-      "Gemini API",
     ],
   },
 ];

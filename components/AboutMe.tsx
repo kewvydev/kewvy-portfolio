@@ -20,17 +20,16 @@ export default function AboutMe() {
       <div className="about-body">
         <p className="large-copy">
           Hi, I&apos;m Kevin!<br />
-
-          A Software Engineering student with hands-on experience building
-          web applications, backend<br/>systems, and AI-powered solutions.<br />
+          I&apos;m a software engineering student building web platforms,
+          backend systems, and AI-driven workflows.
         </p>
         <p>
-          I enjoy solving problems, exploring new technologies, and turning ideas into
-          practical products. Through academic, professional, and personal projects, I&apos;ve
-          developed strong technical and communication skills while tackling real-world challenges. <br/><br/>
-
-          I&apos;m always looking for opportunities to grow as a software engineer, contribute to meaningful products,
-          and collaborate with teams where I can keep learning and building impactful software. <br/><br/>
+          At UABC, I work on Spring Boot services and help design a hybrid AWS
+          architecture for incident investigation across university systems.
+          Previously, I built a self-service booking platform at CleanMindset,
+          taking features from stakeholder conversations through release.
+          I enjoy working across product, backend, and cloud infrastructure to
+          turn complex problems into useful software.
         </p>
         <div className="about-links">
           <a
@@ -52,7 +51,7 @@ export default function AboutMe() {
         <div className="education">
           <span>Currently studying</span>
           <strong>
-            B.S. Software Engineering and Emerging Technologies
+            B.S. in Software and Emerging Technologies Engineering
           </strong>
         </div>
       </div>

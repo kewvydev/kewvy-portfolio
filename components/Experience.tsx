@@ -23,7 +23,10 @@ export default function Experience() {
           <span />
         </div>
         {experiences.map((experience) => (
-          <article key={experience.company} className="experience-entry">
+          <article
+            key={`${experience.company}-${experience.role}`}
+            className="experience-entry"
+          >
             <div className="experience-date">
               <span>{experience.period}</span>
               <ArrowUpRight size={25} aria-hidden="true" />

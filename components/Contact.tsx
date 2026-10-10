@@ -49,7 +49,7 @@ export default function Contact() {
     >
       <div className="contact-copy">
         <EditorialTitle lines={["LET’S", "TALK."]} />
-        <p>Open to freelance and part-time opportunities.</p>
+        <p>Open to remote work and internships.</p>
         <a className="contact-email" href={`mailto:${EMAIL}`}>
           {EMAIL} <ArrowUpRight size={22} />
         </a>

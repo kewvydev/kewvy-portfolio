@@ -17,7 +17,7 @@ export default function Skills() {
         </div>
         <EditorialTitle lines={["Technical", "toolkit."]} />
         <p>
-          Languages, platforms, infrastructure, testing, and agentic tools.
+          From React and Spring Boot to cloud infrastructure, testing, and AI agents.
         </p>
       </div>
       <div className="skills-list">
