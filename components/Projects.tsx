@@ -52,7 +52,18 @@ function ProjectFeature({
           <span>{project.title}</span>
           <X size={16} />
         </div>
-        <div className="project-image">
+        <div
+          className={`project-image${
+            "containImages" in project && project.containImages
+              ? " project-image-contain"
+              : ""
+          }${
+            "portraitImageIndices" in project &&
+            project.portraitImageIndices?.includes(slide)
+              ? " project-image-portrait"
+              : ""
+          }`}
+        >
           <Image
             key={slide}
             onLoad={(event) => {
@@ -83,24 +94,35 @@ function ProjectFeature({
             {String(project.images.length).padStart(2, "0")}{" "}
             <span className="gallery-caption">Screenshots</span>
           </span>
-          {project.images.length > 1 && (
-            <div>
-              <button
-                type="button"
-                aria-label={`Previous ${project.title} screenshot`}
-                onClick={() => changeSlide(-1)}
-              >
-                <ArrowLeft size={19} />
-              </button>
-              <button
-                type="button"
-                aria-label={`Next ${project.title} screenshot`}
-                onClick={() => changeSlide(1)}
-              >
-                <ArrowRight size={19} />
-              </button>
-            </div>
-          )}
+          <div>
+            <a
+              href={project.images[slide]}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Open ${project.title} screenshot ${slide + 1} full size`}
+              title="Open full image"
+            >
+              <ArrowUpRight size={19} />
+            </a>
+            {project.images.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  aria-label={`Previous ${project.title} screenshot`}
+                  onClick={() => changeSlide(-1)}
+                >
+                  <ArrowLeft size={19} />
+                </button>
+                <button
+                  type="button"
+                  aria-label={`Next ${project.title} screenshot`}
+                  onClick={() => changeSlide(1)}
+                >
+                  <ArrowRight size={19} />
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
       <div className="project-info">
@@ -171,7 +193,7 @@ export default function Projects() {
               className="rotate-180"
             />
           </span>
-          <p>Web platforms, backend systems, and cloud work.</p>
+          <p>Web and mobile products, backend systems, and cloud work.</p>
         </div>
       </div>
       <div className="featured-projects">

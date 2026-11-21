@@ -18,7 +18,7 @@ export default function Highlights() {
               sizes="(max-width: 600px) 82px, 120px"
             />
           </div>
-          <p>Human–computer interaction and team challenges.</p>
+          <p>Space health, human–computer interaction, and team challenges.</p>
         </div>
       </div>
       <article className="research">
@@ -37,11 +37,6 @@ export default function Highlights() {
               height={424}
               sizes="(max-width: 600px) 78px, 120px"
             />
-          </span>
-          <span className="research-sticker">
-            Field notes
-            <br />
-            <Asterisk size={34} />
           </span>
         </div>
         <div className="research-content">

@@ -19,7 +19,7 @@ const bodyFont = localFont({
 export const metadata: Metadata = {
   title: "Kevin Gonzalez",
   description:
-    "Software engineering student and fullstack developer in Baja California, Mexico. Building web platforms, Spring Boot services, and AI-driven workflows.",
+    "Kevin Gonzalez is a software engineering student and fullstack developer building web and mobile products, cloud services, and AI workflows. Explore TraumaTeam and more projects.",
   keywords: [
     "Kevin Gonzalez",
     "Fullstack Developer",
@@ -31,6 +31,10 @@ export const metadata: Metadata = {
     "Spring Boot",
     "AWS",
     "AI Agents",
+    "React Native",
+    "NestJS",
+    "TraumaTeam",
+    "NASA Space Apps Challenge 2026",
   ],
   authors: [{ name: "Kevin Gonzalez", url: "https://kewvy.dev" }],
   creator: "Kevin Gonzalez",
@@ -42,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kevin Gonzalez",
     description:
-      "Software engineering student and fullstack developer in Baja California, Mexico. Building web platforms, Spring Boot services, and AI-driven workflows.",
+      "Kevin Gonzalez is a software engineering student and fullstack developer building web and mobile products, cloud services, and AI workflows. Explore TraumaTeam and more projects.",
   },
 };
 

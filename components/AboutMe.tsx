@@ -20,16 +20,17 @@ export default function AboutMe() {
       <div className="about-body">
         <p className="large-copy">
           Hi, I&apos;m Kevin!<br />
-          I&apos;m a software engineering student building web platforms,
+          I&apos;m a software engineering student building web and mobile products,
           backend systems, and AI-driven workflows.
         </p>
         <p>
           At UABC, I work on Spring Boot services and help design a hybrid AWS
           architecture for incident investigation across university systems.
-          Previously, I built a self-service booking platform at CleanMindset,
-          taking features from stakeholder conversations through release.
-          I enjoy working across product, backend, and cloud infrastructure to
-          turn complex problems into useful software.
+          With my team, I built TraumaTeam, a space health project recognized
+          locally and globally at NASA Space Apps Challenge 2026. Previously,
+          I developed a self-service booking platform at CleanMindset, taking
+          features from stakeholder conversations through release. I enjoy
+          turning complex problems into useful software.
         </p>
         <div className="about-links">
           <a

@@ -20,8 +20,8 @@ export default function HeroSection() {
             </span>
             <div>
               <p>
-                Building web platforms and
-                <br className="desktop-break" /> intelligent backend systems.
+                Building web and mobile products
+                <br className="desktop-break" /> with cloud and AI.
               </p>
               <div className="hero-actions">
                 <a href="#projects" className="button button-dark">
