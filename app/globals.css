@@ -523,6 +523,16 @@ section {
   object-position: top;
   transition: scale 0.4s;
 }
+.project-image-contain {
+  background: #eaf1f7;
+}
+.project-image-contain img {
+  object-fit: contain;
+  object-position: center;
+}
+.project-image-portrait {
+  background: #101729;
+}
 @media (hover: hover) {
   .project-visual:hover .project-image img {
     scale: 1.025;
@@ -541,7 +551,8 @@ section {
 .gallery-controls > div {
   display: flex;
 }
-.gallery-controls button {
+.gallery-controls button,
+.gallery-controls a {
   display: flex;
   width: 48px;
   height: 48px;
@@ -551,10 +562,12 @@ section {
   border: 0;
   border-left: 2px solid var(--ink);
 }
-.gallery-controls button:hover {
+.gallery-controls button:hover,
+.gallery-controls a:hover {
   background: var(--lilac);
 }
-.gallery-controls button:active {
+.gallery-controls button:active,
+.gallery-controls a:active {
   background: var(--peach);
 }
 .project-role {

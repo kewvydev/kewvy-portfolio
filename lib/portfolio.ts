@@ -24,6 +24,17 @@ export const experiences = [
     ],
   },
   {
+    company: "ISyTE Core Labs",
+    role: "Infrastructure Leader",
+    location: "Ensenada, Baja California, Mexico",
+    period: "Sep 2025 – Dec 2025",
+    bullets: [
+      "Configured Windows Server 2022, firewall rules, and ports for lab services.",
+      "Managed SQL Server logins, roles, and auditing; built stored procedures, reports, and audit logs for SGHU.",
+      "Introduced Git and GitHub workflows across lab projects.",
+    ],
+  },
+  {
     company: "CleanMindset Cleaning Services",
     role: "Fullstack Developer",
     location: "Alexandria, Virginia, United States (Remote)",
@@ -38,6 +49,31 @@ export const experiences = [
 ];
 
 export const featuredProjects = [
+  {
+    title: "TraumaTeam",
+    role: "NASA Space Apps Challenge 2026",
+    description:
+      "Space health dashboard and mobile app connecting wearable data, muscle tracking, and research-backed symptom context.",
+    contributions: [
+      "Built a React dashboard combining smartwatch and smart scale data with an interactive 3D body model.",
+      "Integrated a RAG assistant that explains reported muscle symptoms with links to space health research.",
+      "Earned 3rd place locally in Ensenada and Global Nominee status with the team at NASA Space Apps Challenge 2026.",
+    ],
+    technologies: ["React", "React Native", "TypeScript", "NestJS", "Supabase"],
+    demo: "#",
+    code: "#",
+    images: [
+      "/projects/traumateam1.png",
+      "/projects/traumateam2.png",
+      "/projects/traumateam3.jpeg",
+      "/projects/traumateam4.jpeg",
+      "/projects/traumateam5.jpeg",
+      "/projects/traumateam6.jpeg",
+    ],
+    containImages: true,
+    portraitImageIndices: [2, 3, 4, 5],
+    thumbnail: "/projects/traumateam1.png",
+  },
   {
     title: "CleanMindset",
     role: "Fullstack Developer",
@@ -97,31 +133,17 @@ export const featuredProjects = [
     ],
     thumbnail: "/projects/tastify.jpeg",
   },
-  {
-    title: "PcBuilder+",
-    role: "Backend Developer",
-    description:
-      "PC component search and compatibility checking for creating and sharing custom builds.",
-    contributions: [
-      "Designed the REST API, component model, and compatibility rules.",
-      "Implemented persistence with Spring Data JPA and PostgreSQL.",
-      "Built component search and configuration filters.",
-    ],
-    technologies: [
-      "Java 17",
-      "Spring Boot 3",
-      "Spring Data JPA",
-      "Maven",
-      "PostgreSQL",
-    ],
-    demo: "#",
-    code: "https://github.com/kewvydev/pc-builder-backend",
-    images: ["/projects/pcbuilder.jpeg"],
-    thumbnail: "/projects/pcbuilder.jpeg",
-  },
 ];
 
 export const otherProjects = [
+  {
+    title: "PcBuilder+",
+    description:
+      "PC component search and compatibility checking for creating and sharing custom builds.",
+    tags: ["Java 17", "Spring Boot 3", "Spring Data JPA", "PostgreSQL"],
+    demo: "#",
+    code: "https://github.com/kewvydev/pc-builder-backend",
+  },
   {
     title: "CodeFront",
     description:
@@ -158,9 +180,10 @@ export const otherProjects = [
 
 export const highlights = [
   {
-    title: "NASA Space Apps Challenge 2025",
-    description: "Developed a technical proposal for a space-related challenge.",
-    type: "Hackathon",
+    title: "NASA Space Apps Challenge 2026",
+    description:
+      "TraumaTeam earned 3rd place locally in Ensenada and Global Nominee status.",
+    type: "Award",
   },
   {
     title: "ICPC Mexico Regional Round 2025",
@@ -183,7 +206,7 @@ export const featuredResearch = {
 export const skillCategories = [
   {
     name: "Languages",
-    skills: ["Java", "TypeScript", "JavaScript", "Python"],
+    skills: ["Java", "TypeScript", "JavaScript", "Python", "C# (.NET)"],
   },
   {
     name: "Frontend",
@@ -202,7 +225,6 @@ export const skillCategories = [
       "Drizzle",
       "AWS",
       "GCP",
-      "AWS Step Functions",
     ],
   },
   {
@@ -219,12 +241,9 @@ export const skillCategories = [
   {
     name: "AI & Agents",
     skills: [
-      "Agent Skills",
+      "Skills",
       "MCPs",
       "Spec-Driven Development",
-      "Amazon Bedrock AgentCore",
-      "OpenCode",
-      "Cursor",
       "Codex",
       "Claude Code",
     ],
